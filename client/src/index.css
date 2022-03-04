@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400;500&family=Nunito+Sans:wght@200;300;400&display=swap");
+:root {
+  --font-primary: 'Josefin Sans', sans-serif;
+  --font-secondary: 'Nunito Sans', sans-serif;
+  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  --transition: all 0.3s linear;
+  --clr-black:#222;
+  --clr-white:#fff;
+  --clr-grey-1: #aaa;
+  --clr-primary-1:#4FBDBA;
+}
+
+/* Global Styless                   **/
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: var(--font-primary);
+  line-height: 1.5;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.6;
+  color: #222;
+  font-weight: 500;
+}
+
+h5 {
+  font-weight: 300;
+  color: #aaa;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 2.5rem;
+}
+
+h4 {
+  font-size: 2rem;
+}
+
+h5 {
+  font-size: 1.4rem;
+}
+
+p {
+  font-size: 1.6rem;
+  font-family: var(--font-secondary);
+}
+
+.btn {
+  background-color: var(--clr-black);
+  color: var(--clr-white);
+  font-size: 1.6rem;
+  cursor: pointer;
+  padding: 1rem 1.2rem;
+  font-family: var(--font-secondary);
+  width: 100%;
+  border: none;
+  text-transform: capitalize;
+  border-radius: 2px;
+}
