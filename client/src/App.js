@@ -4,7 +4,18 @@ import Login from './pages/login'
 import SignUp from './pages/signup'
 
 
+
+
 function App() {
+
+  
+  // useEffect(() => {
+  //   fetch("http://localhost:8000/api")
+  //     .then((res) => res.json())
+  //     .then((data) => console.log(data.message))
+  //     .catch((err)=> console.log(err))
+  // }, []);
+
   return (
     <BrowserRouter>
     <Routes>

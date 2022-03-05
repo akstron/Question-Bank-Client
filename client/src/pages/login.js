@@ -1,24 +1,79 @@
 //Should add Container styles
 
+import { useState } from "react";
+
 const Login = () => {
+
+   const [userDetails,setUserDetails]=useState({
+       email : '',
+       password:''
+   })
+    
+   const {email,password} = userDetails
+   const handleSubmit = async (e) =>{
+
+       e.preventDefault()
+       console.log("Inside handleSubmit")
+       try
+       {
+           const res = await fetch("http://localhost:8000/login",{
+           method:'POST',
+           headers: {
+                "Content-Type": "application/json",
+              },
+           body: JSON.stringify(userDetails)
+        })
+          const data = await res.json()
+          console.log(data)
+          // Display a successfull message on webpage
+       }
+       
+       catch(err){
+            console.log(err)
+       }
+
+      
+   }
+
     return (  
     <main className="ls-container">
     <div className="login">
      <h2 className="login__heading">Login to your account</h2>
      
-     <form className="login__form">
+     <form className="login__form"  onSubmit={handleSubmit}>
 
      <div className="login__input">
      <label htmlFor="email">Email</label>
-     <input type="email" name="email" id="email" required/>
+     <input 
+        type="email" 
+        name="email"
+        id="email"
+        value={email}
+        onChange={(e)=>
+                setUserDetails({...userDetails,email:e.target.value})
+                }
+        required/>
      </div>
 
      <div className="login__input">
      <label htmlFor="password">Password</label>
-     <input type="password" name="password" id="password" required/>
+     <input 
+        type="password" 
+        name="password" 
+        id="password" 
+        value={password}
+        onChange={(e)=>
+            setUserDetails({...userDetails,password:e.target.value})
+            }
+        required/>
      </div>
      
-     <button type="submit" className="btn btn_submit">Login</button>
+     <button 
+     type="submit" 
+     className="btn btn_submit" 
+     >
+        Login
+    </button>
      </form>
      
      <p className="login__text">Do not have an account? 
