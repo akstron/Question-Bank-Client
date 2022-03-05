@@ -3,17 +3,19 @@
 import { useState } from "react";
 
 const Login = () => {
-
+// SET STATES
    const [userDetails,setUserDetails]=useState({
        email : '',
        password:''
    })
     
    const {email,password} = userDetails
+
+
+// HANDLE REQUESTS 
    const handleSubmit = async (e) =>{
 
        e.preventDefault()
-       console.log("Inside handleSubmit")
        try
        {
            const res = await fetch("http://localhost:8000/login",{
@@ -31,10 +33,9 @@ const Login = () => {
        catch(err){
             console.log(err)
        }
+}
 
-      
-   }
-
+// FRONTEND CODE
     return (  
     <main className="ls-container">
     <div className="login">
