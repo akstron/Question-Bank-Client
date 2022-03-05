@@ -1,5 +1,4 @@
 //Should add Container styles
-
 import { useState } from "react";
 
 const Login = () => {
@@ -72,8 +71,7 @@ const Login = () => {
      <button 
      type="submit" 
      className="btn btn_submit" 
-     >
-        Login
+     >Login
     </button>
      </form>
      
