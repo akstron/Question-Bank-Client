@@ -1,12 +1,17 @@
 import './App.css';
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './pages/login'
+import SignUp from './pages/signup'
 
 
-/* Some error with react router version 6. Renders blank pages. Should debug or downgrade the version*/
 function App() {
   return (
-    <Login/>
+    <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<Login/>}/>
+      <Route path='signup' element={<SignUp/>}/>
+    </Routes>
+    </BrowserRouter>
   )
 }
 
