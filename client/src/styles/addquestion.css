@@ -1,91 +1,125 @@
 /*Container Styles*/
 .aq-container {
-    min-height: 100vh;
-    display: -ms-grid;
-    display: grid;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -ms-grid-columns: 0.6fr;
-        grid-template-columns: 0.6fr;
-  }
-  
-  .aq {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    padding: 5rem 14rem;
-  }
-  
-  .aq__heading {
-    margin-bottom: 4rem;
-    -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
-        align-self: center;
-  }
-  
-  .aq__input {
-    margin-bottom: 2rem;
-  }
-  
-  .aq__input:last-of-type {
-    margin-bottom: 7rem;
-  }
-  
-  .aq__form {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-  }
-  
-  .aq__form input, .aq__form textarea {
-    display: block;
-    width: 100%;
-    border: none;
-    border-bottom: 1px solid var(--clr-grey-1);
-    padding-top: 2rem;
-    padding-bottom: 4px;
-    outline: none;
-    font-size: 1.5rem;
-    font-family: var(--font-secondary);
-    -webkit-transition: var(--transition);
-    transition: var(--transition);
-  }
-  
-  .aq__form input:focus, .aq__form textarea:focus {
-    border-bottom: 1px solid var(--clr-black);
-  }
-  
-  .aq__text {
-    -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
-        align-self: center;
-    padding: 2rem 1rem;
-  }
-  
-  .aq__link {
-    cursor: pointer;
-    color: var(--clr-primary-1);
-    font-weight: 600;
-  }
-  
-  .aq__image {
-    width: 100%;
-    height: 100%;
-    -o-object-fit: cover;
-       object-fit: cover;
-  }
+  min-height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-grid-columns: 0.6fr;
+      grid-template-columns: 0.6fr;
+}
+
+.aq {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 5rem 14rem;
+}
+
+.aq__heading {
+  margin-bottom: 5rem;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.aq__form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.aq__form label span {
+  color: var(--clr-error);
+}
+
+.aq__form input, .aq__form textarea {
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--clr-grey-1);
+  padding-top: 2rem;
+  padding-bottom: 3px;
+  outline: none;
+  font-size: 1.5rem;
+  font-family: var(--font-secondary);
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+}
+
+.aq__form input:focus, .aq__form textarea:focus {
+  border-bottom: 1px solid var(--clr-black);
+}
+
+.aq__input {
+  margin-bottom: 2rem;
+}
+
+.aq__tag {
+  display: -ms-grid;
+  display: grid;
+  gap: 4rem;
+  -ms-grid-columns: 1.5fr 1fr;
+      grid-template-columns: 1.5fr 1fr;
+  margin-bottom: 3rem;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.aq__tag__btn {
+  padding: 1rem 2rem;
+  border-radius: 5px;
+}
+
+.aq__dtags {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-column-gap: 1.5rem;
+          column-gap: 1.5rem;
+  row-gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.aq__dtags__btn {
+  border-radius: 2rem;
+  padding: 1rem 1.7rem;
+  background-color: var(--clr-primary-1);
+  color: var(--clr-black);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: max-content;
+  gap: 3rem;
+}
+
+.aq__link {
+  cursor: pointer;
+  color: var(--clr-primary-1);
+  font-weight: 600;
+}
+
+.aq__image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}

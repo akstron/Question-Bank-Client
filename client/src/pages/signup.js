@@ -1,7 +1,20 @@
 //Should add Container styles
 
+import { useState } from "react";
+
 const SignUp = () => {
-    return ( <main class="ls-container">
+
+    const [userDetails,setUserDetails] = useState(
+        {
+            'fullname':'',
+            username:'',
+            email:'',
+            password:'',
+            bio:''
+        }
+    )
+    return ( 
+    <main class="ls-container">
     <div class="login">
      <h2 class="login__heading">Create your account</h2>
      
