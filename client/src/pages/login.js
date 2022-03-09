@@ -1,6 +1,7 @@
 //Should add Container styles
 import { useState } from "react";
 import '../styles/login.css'
+import { Navigate,Link } from 'react-router-dom';
 
 const Login = () => {
 // SET STATES
@@ -9,6 +10,8 @@ const Login = () => {
        password:''
    })
     
+   const [err,setError]= useState('')
+   const [redirect,setRedirect] = useState(false)
    const {email,password} = userDetails
 
 
@@ -28,18 +31,23 @@ const Login = () => {
         })
           const data = await res.json()
           console.log(data)
-          // Display a successfull message on webpage
+          if(!data.status) setError(data.error)
+          else setRedirect(true)
+         
        }
        
        catch(err){
             console.log(err)
+            setError(err)
        }
 }
 
 // FRONTEND CODE
     return (  
+    <>
+    {redirect && <Navigate to='/home'/>}
     <main className="ls-container">
-    <div className="login">
+     <div className="login">
      <h2 className="login__heading">Login to your account</h2>
      
      <form className="login__form"  onSubmit={handleSubmit}>
@@ -69,7 +77,9 @@ const Login = () => {
             }
         required/>
      </div>
-     
+         
+         {/* display error */}
+      
      <button 
      type="submit" 
      className="btn btn_submit" 
@@ -77,13 +87,16 @@ const Login = () => {
     </button>
      </form>
      
-     <p className="login__text">Do not have an account? 
-         <a href="/signup" className="login__link">Create One</a>
+     <p className="login__error">  {err} </p>
+
+     <p className="login__text">Do not have an account? &#160;
+         <Link to="/signup" className="login__link">Create One</Link>
      </p>
     </div>
     
     <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="" className="login__image"/>
     </main>
+    </>  
  );
 }
  

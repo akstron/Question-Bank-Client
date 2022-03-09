@@ -1,5 +1,6 @@
 import { useState } from "react";
 import '../styles/login.css'
+import { Navigate,Link } from "react-router-dom";
 
 const SignUp = () => {
 
@@ -13,7 +14,8 @@ const SignUp = () => {
             bio:''
         }
     )
-    
+    const [err,setError]= useState('')
+    const [redirect,setRedirect] = useState(false)
     const {fullname,username,email,password,bio} = userDetails
 
     // HANDLE REQUESTS 
@@ -22,7 +24,7 @@ const SignUp = () => {
     e.preventDefault()
     try
     {
-        const res = await fetch("http://localhost:8000/login",{
+        const res = await fetch("http://localhost:8000/register",{
         method:'POST',
         credentials: 'include',
         headers: {
@@ -32,7 +34,10 @@ const SignUp = () => {
      })
        const data = await res.json()
        console.log(data)
-       // Display a successfull message on webpage
+
+       if(!data.status) setError(data.error)
+       else setRedirect(true)
+       
     }
     
     catch(err){
@@ -41,6 +46,8 @@ const SignUp = () => {
     }
 
     return ( 
+    <>
+    {redirect && <Navigate to='/home'/>}
     <main className="ls-container">
     <div className="login">
     <h2 className="login__heading">Create your account</h2>
@@ -110,13 +117,18 @@ const SignUp = () => {
      <button type="submit" className="btn btn_submit">Login</button>
      </form>
      
-     <p className="login__text">Already have an account?
-         <a href="./index.html" className="login__link">Login</a>
+     <p className="login__error">  {err} </p>
+
+     <p className="login__text">Already have an account? &#160;
+         <Link to="/" className="login__link">Login</Link>
      </p>
     </div>
     
     <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="" className="login__image"/>
-</main> );
+    </main>
+    </>
+     )
+
 }
  
 export default SignUp;

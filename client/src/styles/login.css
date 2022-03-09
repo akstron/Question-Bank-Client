@@ -85,3 +85,10 @@
        object-fit: cover;
   }
   
+  .login__error{
+    color: var(--clr-error);
+    align-self: center;
+  }
+.btn_submit{
+  margin-bottom: 2rem;
+}
