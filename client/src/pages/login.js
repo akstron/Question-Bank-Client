@@ -1,5 +1,6 @@
 //Should add Container styles
 import { useState } from "react";
+import '../styles/login.css'
 
 const Login = () => {
 // SET STATES

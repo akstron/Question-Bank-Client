@@ -6,7 +6,7 @@ const NavBar = () => {
         <h3 className="nav__heading">QuestionBank</h3>
         <div className="nav__links">
             <a href="/" className="nav__link">all questions</a>
-            <a href="/" className="nav__link">add question</a>
+            <a href="/" className="nav__link">Add question</a>
         </div>
         <input type="text" placeholder="search"/>
         <div className="nav__action">
