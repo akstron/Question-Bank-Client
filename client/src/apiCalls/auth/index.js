@@ -1,5 +1,4 @@
 import { API } from "../../config/backend";
-import axios from 'axios';
 
 export const login = async (userCredentials) => {
     const res = await fetch(`${API}/login`,{
