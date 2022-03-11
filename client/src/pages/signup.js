@@ -7,7 +7,7 @@ const SignUp = () => {
 //SET STATES
     const [userDetails,setUserDetails] = useState(
         {
-            fullname:'',
+            fullName:'',
             username:'',
             email:'',
             password:'',
@@ -16,7 +16,7 @@ const SignUp = () => {
     )
     const [err,setError]= useState('')
     const [redirect,setRedirect] = useState(false)
-    const {fullname,username,email,password,bio} = userDetails
+    const {fullName,username,email,password,bio} = userDetails
 
     // HANDLE REQUESTS 
    const handleSubmit = async (e) =>{
@@ -55,13 +55,13 @@ const SignUp = () => {
      <form className="login__form" onSubmit={handleSubmit}>
      
      <div className="login__input">
-        <label htmlFor="fullname">full name</label>
+        <label htmlFor="fullName">full name</label>
         <input 
         type="text"
-        id="fullname" 
-        value={fullname}
+        id="fullName" 
+        value={fullName}
         onChange={(e)=>
-            setUserDetails({...userDetails,fullname:e.target.value})
+            setUserDetails({...userDetails,fullName:e.target.value})
         }
         required/>
      </div>
