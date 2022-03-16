@@ -1,9 +1,9 @@
 .nav {
     background-color: #39424e;
-    padding: 1rem 2rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
+    padding: 1.2rem 3rem;
+    
+    display: grid;
+    grid-template-columns:0.6fr 1fr 0.8fr 0.7fr;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
@@ -13,36 +13,37 @@
   .nav__heading {
     color: currentColor;
     font-weight: 600;
-    padding: 0 2rem;
+    justify-self: center;
     position: relative;
   }
   
-  .nav__heading::after {
+  .nav__heading::before {
     content: '';
     position: absolute;
-    right: -5px;
-    width: 1.5rem;
-    height: 3rem;
+    left: -15px;
+    width: 1.4rem;
+    height: 3.2rem;
     background-color: var(--clr-primary-1);
   }
   
   .nav__links {
-    padding: 0 5rem;
-    margin-right: auto;
+    justify-self: center;
+    display: grid;
+    grid-template-columns: repeat(2,max-content);
+    grid-column-gap: 3rem;
   }
   
   .nav__link {
     text-transform: capitalize;
-    padding: 0 2rem;
   }
-  
+
   .nav__link--2 {
     background-color: var(--clr-primary-1);
     padding: 1rem 2rem;
   }
   
   .nav input {
-    padding: 0.7rem 4rem;
+    padding: 0.7rem 3rem;
     border-radius: 10px;
     border: none;
     outline: none;
@@ -51,5 +52,9 @@
   }
   
   .nav__action {
-    padding: 0 4rem;
+    justify-self: end;
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(2,max-content);
+    grid-column-gap: 2rem;
   }

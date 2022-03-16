@@ -24,3 +24,16 @@ export const getUser = async() => {
 
     return res.json();
 }
+
+export const register = async (userCredentials) => {
+    const res = await fetch(`${API}/register`,{
+        method:'POST',
+        credentials: 'include',
+        headers: {
+             "Content-Type": "application/json",
+           },
+        body: JSON.stringify(userCredentials)
+     })
+    
+     return res.json();
+};

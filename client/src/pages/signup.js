@@ -1,6 +1,10 @@
 import { useState } from "react";
 import '../styles/login.css'
 import { Navigate,Link } from "react-router-dom";
+import { register } from "../apiCalls/auth";
+import { useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
+
 
 const SignUp = () => {
 
@@ -18,31 +22,36 @@ const SignUp = () => {
     const [redirect,setRedirect] = useState(false)
     const {fullName,username,email,password,bio} = userDetails
 
+    // Global States
+    const [user, setUser] = useContext(UserContext);
+
     // HANDLE REQUESTS 
    const handleSubmit = async (e) =>{
 
     e.preventDefault()
-    try
-    {
-        const res = await fetch("http://localhost:8000/register",{
-        method:'POST',
-        credentials: 'include',
-        headers: {
-             "Content-Type": "application/json",
-           },
-        body: JSON.stringify(userDetails)
-     })
-       const data = await res.json()
-       console.log(data)
+     try
+     {
+    //     const res = await fetch("http://localhost:8000/register",{
+    //     method:'POST',
+    //     credentials: 'include',
+    //     headers: {
+    //          "Content-Type": "application/json",
+    //        },
+    //     body: JSON.stringify(userDetails)
+            const data = await register(userDetails)
+            console.log(data)
 
-       if(!data.status) setError(data.error)
-       else setRedirect(true)
-       
-    }
-    
-    catch(err){
-         console.log(err)
-    }
+            if(!data.status) setError(data.error)
+            else {
+                setUser(() => data.user);
+                setRedirect(true)
+            }
+      }
+
+      catch (err){
+        console.log(err)
+        setError(err)
+      }
     }
 
     return ( 
@@ -67,7 +76,7 @@ const SignUp = () => {
      </div>
 
      <div className="login__input">
-     <label htmlFor="username">username</label>
+     <label htmlFor="username">user name</label>
      <input 
       type="text" 
       id="username" 
