@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { getUser } from "../apiCalls/auth";
 import { addQuestion } from "../apiCalls/question";
+import { Navigate } from "react-router-dom";
 
 const AddQuestion = () => {
     const [user, setUser] = useContext(UserContext);
@@ -16,6 +17,7 @@ const AddQuestion = () => {
         if(!user){
             getUser().then((res) => {
                if(res.status) setUser(res.user);
+               else <Navigate to="/" />
             })
             .catch((e) => console.log(e));
         }

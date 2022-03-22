@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './pages/login'
 import SignUp from './pages/signup'
 import AddQuestion from './pages/addQuestion'
+import Questions from './pages/questions'
 import Home from './pages/home'
 import { useContext } from 'react';
 import { UserContext, UserProvider } from './contexts/UserContext';
@@ -25,7 +26,8 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/home' element={<Home/>}/>
-        <Route path = '/addQuestion' element={<AddQuestion/>}/>
+        <Route path= '/addQuestion' element={<AddQuestion/>}/>
+        <Route path= '/questions' element={<Questions/>}/>
       </Routes>
       </BrowserRouter>
     </UserProvider>
