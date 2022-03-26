@@ -11,7 +11,7 @@ const NavBar = () => {
         </div>
         <input type="text" placeholder="search"/>
         <div className="nav__action">
-            <Link href="/login" className="nav__link nav__link--1">Login</Link>
+            <Link to="/login" className="nav__link nav__link--1">Login</Link>
             <a href="/" className="nav__link nav__link--2">Sign up</a>
         </div>
         </nav>
