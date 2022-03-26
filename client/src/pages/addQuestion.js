@@ -79,10 +79,6 @@ const AddQuestion = () => {
             <div className="aq">
                 <h2 className="aq__heading"> Add Question </h2>
 
-                {
-                    console.log('hello')
-                }
-
                 <form className="aq__form" onSubmit={handleSubmit}>
                     <div className="aq__input">
                         <label htmlFor="q-title">Name of the question</label>
