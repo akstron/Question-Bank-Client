@@ -1,7 +1,7 @@
 import { API } from "../../config/backend";
 
 export const login = async (userCredentials) => {
-    const res = await fetch(`${API}/login`,{
+    const res = await fetch(`${API}/auth/login`,{
         method:'POST',
         credentials: 'include',
         headers: {
@@ -14,7 +14,7 @@ export const login = async (userCredentials) => {
 };
 
 export const getUser = async() => {
-    const res = await fetch(`${API}/getUser`, {
+    const res = await fetch(`${API}/auth/getUser`, {
         method:'GET',
         credentials: 'include',
         headers: {
