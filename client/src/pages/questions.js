@@ -3,9 +3,6 @@ import Cards from "../comp/cards"
 import '../styles/questions.css'
 
 const Questions = () => {
- 
-   
-
 
     return (  
       <>
