@@ -80,7 +80,7 @@ const Search = () => {
                   type="button"
                   key={index}
                   id={index}
-                  className="btn aq__dtags__btn"
+                  className="btn db__tags__btn"
               >
                   {value}
                   <span
