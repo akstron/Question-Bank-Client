@@ -34,14 +34,6 @@ const AddQuestion = () => {
     const [error, setError] = useState(false);
     const { name, url, notes, tag, tagarray } = qDetails;
 
-    // HANDLE FUNCTIONS
-    const handleTags = () => {
-        const { tagarray, tag } = qDetails;
-
-        tag
-            ? setQDetails({ ...qDetails, tagarray: [...tagarray, tag], tag: "" })
-            : setError(true);
-    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -51,6 +43,15 @@ const AddQuestion = () => {
         } catch (err) {
             console.log(err);
         }
+    };
+
+    // HANDLE FUNCTIONS
+    const handleTags = () => {
+        const { tagarray, tag } = qDetails;
+
+        tag
+            ? setQDetails({ ...qDetails, tagarray: [...tagarray, tag], tag: "" })
+            : setError(true);
     };
 
     // CREATE TAGS

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const Search = () => {
 
 // // CODE TO MANAGE EVENT ON SEARCH BAR
@@ -37,6 +39,64 @@ const Search = () => {
 //     }
 
 // DESIGN CODE
+          
+    const [qDetails, setQDetails] = useState({
+      question:"",
+      tag: "",
+      tagarray: [],
+    });
+
+    const [error, setError] = useState(false);
+    const { tag, tagarray } = qDetails;
+
+    //handleSubmit
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+
+      // CALL API
+
+      // try {
+      //     const data = await addQuestion(qDetails);
+      //     console.log(data);
+      // } catch (err) {
+      //     console.log(err);
+      // }
+  };
+
+    //handle Tags
+    const handleTags = () => {
+          const { tagarray, tag } = qDetails;
+  
+          tag
+              ? setQDetails({ ...qDetails, tagarray: [...tagarray, tag], tag: "" })
+              : setError(true);
+    };
+
+    //create tags
+    const tagNames = tagarray.map((value, index) => {
+          return (
+              <button
+                  type="button"
+                  key={index}
+                  id={index}
+                  className="btn aq__dtags__btn"
+              >
+                  {value}
+                  <span
+                      onClick={(e) => {
+                          const { tagarray } = qDetails;
+                          tagarray.splice(e.target.parentElement.id, 1);
+                          setQDetails({ ...qDetails, tagarray });
+                      }}
+                  >
+                      &#x2715;
+                  </span>
+              </button>
+          );
+    });
+  
+
     return ( 
         <>
         <article class="db__func">
@@ -49,22 +109,34 @@ const Search = () => {
                     <input type="text" id="" class="db__input" placeholder="Search by question"/>
                     
                     <div class="db__tag">
-                      <input type="text" id="" class="db__input" placeholder="Search by Tag"/>
-                      <button type="button" class="btn db__btn">
+                      <input 
+                          type="text" 
+                          id="tag" 
+                          class="db__input" 
+                          placeholder="Search by Tag"
+                          value={tag}
+                          onChange={(e) => {
+                            setQDetails({ ...qDetails, tag: e.target.value });
+                            setError(false);
+                          }}
+                          />
+                      <button 
+                          type="button" 
+                          class="btn db__btn"
+                          onClick={handleTags}>
                         Add Tag
                       </button>
                     </div>
 
                     <div class="db__tags">
-                      <button type="button" class="btn db__tags__btn"> Structures <span> &#x2715;</span></button>
-                      <button type="button" class="btn db__tags__btn">Architecture <span> &#x2715;</span> </button>
-                      <button type="button" class="btn db__tags__btn">Dynamic <span> &#x2715;</span> </button>
-                      <button type="button" class="btn db__tags__btn">Architecture <span> &#x2715;</span> </button>
-                      <button type="button" class="btn db__tags__btn">Dynamic <span> &#x2715;</span> </button>
-                      
+                      {tagNames}
                     </div>
 
-                    <button type="submit" class="btn db__refresh">
+                    <button 
+                        type="submit" 
+                        class="btn db__refresh"
+                        onSubmit={handleSubmit}
+                        >
                       Refresh Results
                     </button>
                     <button type="submit" class="btn db__clear">
