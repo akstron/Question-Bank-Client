@@ -13,6 +13,18 @@ export const login = async (userCredentials) => {
      return res.json();
 };
 
+export const logout = async () => {
+    const res = await fetch(`${API}/auth/logout`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type' : "application/json",
+        },
+    });
+
+    return res.json();
+}
+
 export const getUser = async() => {
     const res = await fetch(`${API}/auth/getUser`, {
         method:'GET',
