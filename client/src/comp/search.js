@@ -99,20 +99,20 @@ const Search = () => {
 
     return ( 
         <>
-        <article class="db__func">
-                <h4 class="db__user">
+        <article className="db__func">
+                <h4 className="db__user">
                     hi, user 
                     <span>&#9734;</span>                    
                 </h4>
-                <div class="db__searchbox">
+                <div className="db__searchbox">
                     
-                    <input type="text" id="" class="db__input" placeholder="Search by question"/>
+                    <input type="text" id="" className="db__input" placeholder="Search by question"/>
                     
-                    <div class="db__tag">
+                    <div className="db__tag">
                       <input 
                           type="text" 
                           id="tag" 
-                          class="db__input" 
+                          className="db__input" 
                           placeholder="Search by Tag"
                           value={tag}
                           onChange={(e) => {
@@ -122,28 +122,28 @@ const Search = () => {
                           />
                       <button 
                           type="button" 
-                          class="btn db__btn"
+                          className="btn db__btn"
                           onClick={handleTags}>
                         Add Tag
                       </button>
                     </div>
-
-                    <div class="db__tags">
+                    {error && !tag && <span>&#160;&#160;tag cannot be empty</span>}     
+                    <div className="db__tags">
                       {tagNames}
                     </div>
 
                     <button 
                         type="submit" 
-                        class="btn db__refresh"
+                        className="btn db__refresh"
                         onSubmit={handleSubmit}
                         >
                       Refresh Results
                     </button>
-                    <button type="submit" class="btn db__clear">
+                    <button type="submit" className="btn db__clear">
                      Clear Filters
                     </button>
                 </div>
-                <button type="button" class="btn db__addquestion">
+                <button type="button" className="btn db__addquestion">
                   Add Question
                 </button>
             </article>

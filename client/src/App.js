@@ -7,6 +7,7 @@ import Home from './pages/home'
 import { useContext } from 'react';
 import { UserContext, UserProvider } from './contexts/UserContext';
 import { API } from "./config/backend";
+import ProtectedRoutes from "./config/ProtectedRoutes";
 
 function App() {
 
@@ -26,8 +27,17 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/home' element={<Home/>}/>
-        <Route path= '/addQuestion' element={<AddQuestion/>}/>
-        <Route path= '/questions' element={<Questions/>}/>
+        <Route path= '/addQuestion' element={
+         
+            <AddQuestion/>
+        
+          }/>
+        
+        <Route path= '/questions' element={
+         <ProtectedRoutes> 
+          <Questions/>
+         </ProtectedRoutes> 
+        }/>
       </Routes>
       </BrowserRouter>
     </UserProvider>

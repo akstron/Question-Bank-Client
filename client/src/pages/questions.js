@@ -1,6 +1,7 @@
 import Search from "../comp/search"
 import Cards from "../comp/cards"
 import '../styles/questions.css'
+import { Link } from "react-router-dom"
 
 const Questions = () => {
 
@@ -18,7 +19,7 @@ const Questions = () => {
 
             <main class="db__main">
               <div class="db__main__nav">
-                  <a href="/" class="nav__link nav__link--1">Logout</a>
+                  <Link to="/login" class="nav__link nav__link--1">Logout</Link>
               </div>
 
               <Cards/>
