@@ -16,7 +16,9 @@
   .db__heading::after {
     content: '';
     position: absolute;
-    width: 1.5rem;
+    
+    top:10px;
+    width: 1.4rem;
     height: 3rem;
     background-color: var(--clr-primary-1);
   }
@@ -125,6 +127,7 @@
     background-color: var(--clr-primary-1);
     color: var(--clr-black);
     border-radius: 10px;
+    text-align: center;
   }
   
   .db__main__nav {

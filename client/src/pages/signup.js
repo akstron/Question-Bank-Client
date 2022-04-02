@@ -129,7 +129,7 @@ const SignUp = () => {
      <p className="login__error">  {err} </p>
 
      <p className="login__text">Already have an account? &#160;
-         <Link to="/" className="login__link">Login</Link>
+         <Link to="/" className="login__link">SignUp</Link>
      </p>
     </div>
     

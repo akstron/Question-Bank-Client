@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Search = () => {
 
@@ -132,20 +133,20 @@ const Search = () => {
                       {tagNames}
                     </div>
 
-                    <button 
+                    {/* <button 
                         type="submit" 
                         className="btn db__refresh"
                         onSubmit={handleSubmit}
                         >
                       Refresh Results
-                    </button>
+                    </button> */}
                     <button type="submit" className="btn db__clear">
                      Clear Filters
                     </button>
                 </div>
-                <button type="button" className="btn db__addquestion">
+                <Link to='/addQuestion' className="btn db__addquestion">
                   Add Question
-                </button>
+                </Link>
             </article>
         </>
      );

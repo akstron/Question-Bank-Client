@@ -8,6 +8,7 @@ import { useContext } from 'react';
 import { UserContext, UserProvider } from './contexts/UserContext';
 import { API } from "./config/backend";
 import ProtectedRoutes from "./config/ProtectedRoutes";
+import Loader from "./comp/loader";
 
 function App() {
 
@@ -34,10 +35,16 @@ function App() {
           }/>
         
         <Route path= '/questions' element={
-         <ProtectedRoutes> 
+      
           <Questions/>
-         </ProtectedRoutes> 
+         
         }/>
+
+        <Route path= '/loader' element={
+              
+              <Loader/>
+            
+            }/>
       </Routes>
       </BrowserRouter>
     </UserProvider>

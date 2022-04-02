@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "../styles/addquestion.css";
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { getUser } from "../apiCalls/auth";
 import { addQuestion } from "../apiCalls/question";
 import { Navigate } from "react-router-dom";
+import NavBar from "../comp/navbar";
 
 const AddQuestion = () => {
     const [user, setUser] = useContext(UserContext);
@@ -78,6 +79,8 @@ const AddQuestion = () => {
     });
 
     return (
+        <>
+        <NavBar/>
         <main className="aq-container">
             <div className="aq">
                 <h2 className="aq__heading"> Add Question </h2>
@@ -156,6 +159,7 @@ const AddQuestion = () => {
                 </form>
             </div>
         </main>
+        </>
     );
 };
 
