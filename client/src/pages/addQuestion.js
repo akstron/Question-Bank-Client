@@ -13,15 +13,15 @@ const AddQuestion = () => {
      * TODO: handle res.status = false on client side
      * ON UNAUTHORISED: send it to /login
      */
-    useEffect(() => {
-        if(!user){
-            getUser().then((res) => {
-               if(res.status) setUser(res.user);
-               else <Navigate to="/" />
-            })
-            .catch((e) => console.log(e));
-        }
-    }, []);
+    // useEffect(() => {
+    //     if(!user){
+    //         getUser().then((res) => {
+    //            if(res.status) setUser(res.user);
+    //            else <Navigate to="/" />
+    //         })
+    //         .catch((e) => console.log(e));
+    //     }
+    // }, []);
 
     // SETTING STATES
     const [qDetails, setQDetails] = useState({
