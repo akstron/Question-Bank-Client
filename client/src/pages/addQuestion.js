@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "../styles/addquestion.css";
 import { addQuestion } from "../apiCalls/question";
-import { Navigate } from "react-router-dom";
 import NavBar from "../comp/navbar";
 
 const AddQuestion = () => {
@@ -11,7 +10,7 @@ const AddQuestion = () => {
         name: "",
         url: "",
         description:"",
-        difficultyLevel:"",
+        difficulty:"",
         notes: "",
         tag: "",
         
@@ -20,7 +19,7 @@ const AddQuestion = () => {
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
     const [tagError, setTagError] = useState(false);
-    const { name, url, notes,description,difficultyLevel, tag, tagarray } = qDetails;
+    const { name, url, notes,description,difficulty, tag, tagarray } = qDetails;
 
 
     const handleSubmit = async (e) => {
@@ -123,9 +122,9 @@ const AddQuestion = () => {
                         <input
                             type="number"
                             id="q-difficulty"
-                            value={difficultyLevel}
+                            value={difficulty}
                             onChange={(e) => {
-                                setQDetails({ ...qDetails, difficultyLevel: e.target.value });
+                                setQDetails({ ...qDetails, difficulty: e.target.value });
                             }}
                             min="1"
                             max="10"

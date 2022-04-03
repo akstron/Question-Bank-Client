@@ -1,16 +1,18 @@
 import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { getUser } from "../apiCalls/auth";
+import Loader from "../comp/loader";
 import { UserContext } from "../contexts/UserContext";
 
-const ProtectedRoutes = ({children}) => {
+const CheckUser = ({children}) => {
 
     const [user, setUser] = useContext(UserContext);
     const [isLoading, setIsLoading] = useState(true);
 
     if(!user){
-        
+        console.log('user')
         getUser().then((res) => {
+            console.log(res)
             if(res.status) {
                 setUser(res.user);
             }
@@ -28,10 +30,10 @@ const ProtectedRoutes = ({children}) => {
      * TODO: Add a loading page
      */
     if(isLoading){
-        return 'Loading';
+        return <Loader/>
     }
 
-    return user ? children : <Navigate to={'/login'} />
+    return user ?  <Navigate to={'/home'}/> : children
 }
  
-export default ProtectedRoutes;
+export default CheckUser;

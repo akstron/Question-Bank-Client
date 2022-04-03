@@ -1,5 +1,5 @@
-//Should add Container styles
-import { useEffect, useState } from "react";
+
+import { useState } from "react";
 import '../styles/login.css'
 import { Navigate, Link } from 'react-router-dom';
 import { useContext } from "react";
@@ -8,7 +8,7 @@ import { login } from "../apiCalls/auth";
 
 const Login = () => {
     const [user, setUser] = useContext(UserContext);
-
+ 
     // SET STATES
     const [userDetails, setUserDetails] = useState({
         email: '',

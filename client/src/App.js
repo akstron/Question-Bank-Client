@@ -4,11 +4,9 @@ import SignUp from './pages/signup'
 import AddQuestion from './pages/addQuestion'
 import Questions from './pages/questions'
 import Home from './pages/home'
-import { useContext } from 'react';
-import { UserContext, UserProvider } from './contexts/UserContext';
-import { API } from "./config/backend";
+import { UserProvider } from './contexts/UserContext';
 import ProtectedRoutes from "./config/ProtectedRoutes";
-import Loader from "./comp/loader";
+import CheckUser from "./config/checkUser";
 
 function App() {
 
@@ -16,8 +14,17 @@ function App() {
     <UserProvider>
       <BrowserRouter>
       <Routes>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/signup' element={<SignUp/>}/>
+        <Route path='/login' element={
+        <CheckUser>
+           <Login/>
+        </CheckUser>
+        }/>
+        <Route path='/signup' element={
+          <CheckUser>
+            <SignUp/>
+          </CheckUser>
+        }/>
+
         <Route path='/home' element={<Home/>}/>
         <Route path= '/addQuestion' element={
          <ProtectedRoutes>
@@ -26,16 +33,10 @@ function App() {
           }/>
         
         <Route path= '/questions' element={
-      
+        <ProtectedRoutes>
           <Questions/>
-         
+        </ProtectedRoutes> 
         }/>
-
-        <Route path= '/loader' element={
-              
-              <Loader/>
-            
-            }/>
       </Routes>
       </BrowserRouter>
     </UserProvider>

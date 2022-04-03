@@ -1,14 +1,14 @@
 import Search from "../comp/search"
 import Cards from "../comp/cards"
 import '../styles/questions.css'
-import { Link, Navigate } from "react-router-dom"
+import { Navigate } from "react-router-dom"
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { getQuestion } from "../apiCalls/question";
 import { logout } from "../apiCalls/auth";
 
 const Questions = () => {
-  const [user] = useContext(UserContext)
+  const [user,setUser] = useContext(UserContext)
   const [redirect,setRedirect] = useState(false)
 
 
@@ -22,7 +22,9 @@ const Questions = () => {
 
       console.log(res)
       if(res.status)
-      setRedirect(true)
+     { setUser(null)
+       setRedirect(true)
+     }
 
       else{
         console.log(res)
@@ -35,10 +37,8 @@ const Questions = () => {
   }
   // Fetch All Questions when the components first renders
   useEffect(()=>{
-    
-    console.log(user)
     const fetchData = async() =>{
-      try
+    try
     {    
            const data = await getQuestion()
            console.log(data)
@@ -55,9 +55,6 @@ const Questions = () => {
     fetchData();
 
   },[])
-
-  
-
 
     return (  
       <>
