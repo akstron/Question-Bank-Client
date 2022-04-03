@@ -1,46 +1,39 @@
 import { useState } from "react";
 import "../styles/addquestion.css";
-import { useContext } from "react";
-import { UserContext } from "../contexts/UserContext";
-import { getUser } from "../apiCalls/auth";
 import { addQuestion } from "../apiCalls/question";
 import { Navigate } from "react-router-dom";
 import NavBar from "../comp/navbar";
 
 const AddQuestion = () => {
-    const [user, setUser] = useContext(UserContext);
-
-    /**
-     * TODO: handle res.status = false on client side
-     * ON UNAUTHORISED: send it to /login
-     */
-    // useEffect(() => {
-    //     if(!user){
-    //         getUser().then((res) => {
-    //            if(res.status) setUser(res.user);
-    //            else <Navigate to="/" />
-    //         })
-    //         .catch((e) => console.log(e));
-    //     }
-    // }, []);
 
     // SETTING STATES
     const [qDetails, setQDetails] = useState({
         name: "",
         url: "",
+        description:"",
+        difficultyLevel:"",
         notes: "",
         tag: "",
+        
         tagarray: [],
     });
     const [error, setError] = useState(false);
-    const { name, url, notes, tag, tagarray } = qDetails;
+    const [success, setSuccess] = useState(false);
+    const [tagError, setTagError] = useState(false);
+    const { name, url, notes,description,difficultyLevel, tag, tagarray } = qDetails;
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            setError('')
+            setSuccess('')
             const data = await addQuestion(qDetails);
-            console.log(data);
+            if(!data.status) setError(data.error)
+            else {
+                setSuccess(data.message)
+                qDetails({})
+            }
         } catch (err) {
             console.log(err);
         }
@@ -52,7 +45,7 @@ const AddQuestion = () => {
 
         tag
             ? setQDetails({ ...qDetails, tagarray: [...tagarray, tag], tag: "" })
-            : setError(true);
+            : setTagError(true);
     };
 
     // CREATE TAGS
@@ -113,6 +106,35 @@ const AddQuestion = () => {
                     </div>
 
                     <div className="aq__input">
+                        <label htmlFor="q-description">Description</label>
+                        <input
+                            type="text"
+                            id="q-description"
+                            value={description}
+                            onChange={(e) => {
+                                setQDetails({ ...qDetails, description: e.target.value });
+                            }}
+                            required
+                        />
+                    </div>
+
+                    <div className="aq__input">
+                        <label htmlFor="q-difficulty">Difficult Level</label>
+                        <input
+                            type="number"
+                            id="q-difficulty"
+                            value={difficultyLevel}
+                            onChange={(e) => {
+                                setQDetails({ ...qDetails, difficultyLevel: e.target.value });
+                            }}
+                            min="1"
+                            max="10"
+                            required
+                        />
+                    </div>
+
+
+                    <div className="aq__input">
                         <label htmlFor="q-notes">Notes</label>
                         <textarea
                             id="q-notes"
@@ -130,7 +152,7 @@ const AddQuestion = () => {
                         <div className="aq__tag__form">
                             <label htmlFor="q-tags">
                                 Add tags{" "}
-                                {error && !tag && <span>&#160;&#160;tag cannot be empty</span>}
+                                {tagError && !tag && <span>&#160;&#160;tag cannot be empty</span>}
                             </label>
                             <input
                                 type="text"
@@ -138,7 +160,7 @@ const AddQuestion = () => {
                                 value={tag}
                                 onChange={(e) => {
                                     setQDetails({ ...qDetails, tag: e.target.value });
-                                    setError(false);
+                                    setTagError(false);
                                 }}
                             />
                         </div>
@@ -157,6 +179,8 @@ const AddQuestion = () => {
                         Submit{" "}
                     </button>
                 </form>
+                <p className="login__error">  {error} </p>
+                <p className="login__success">  {success} </p>
             </div>
         </main>
         </>

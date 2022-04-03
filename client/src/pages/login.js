@@ -1,5 +1,5 @@
 //Should add Container styles
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import '../styles/login.css'
 import { Navigate, Link } from 'react-router-dom';
 import { useContext } from "react";
@@ -25,23 +25,17 @@ const Login = () => {
 
         e.preventDefault()
         try {
-            //    const res = await fetch("http://localhost:8000/login",{
-            //    method:'POST',
-            //    credentials: 'include',
-            //    headers: {
-            //         "Content-Type": "application/json",
-            //       },
-            //    body: JSON.stringify(userDetails)
-            // })
-            //   const data = await res.json();
+           
             const data = await login(userDetails);
 
 
             console.log(data)
             if (!data.status) setError(data.error)
             else {
-                setUser(() => data.user);
+                
+                setUser(data.user);
                 setRedirect(true)
+                console.log(user,'from login')
             }
         }
 

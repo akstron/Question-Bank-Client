@@ -12,15 +12,6 @@ import Loader from "./comp/loader";
 
 function App() {
 
-  
-  // useEffect(() => {
-  //   fetch("http://localhost:8000/api")
-  //     .then((res) => res.json())
-  //     .then((data) => console.log(data.message))
-  //     .catch((err)=> console.log(err))
-  // }, []);
-
-
   return (
     <UserProvider>
       <BrowserRouter>
@@ -29,9 +20,9 @@ function App() {
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/home' element={<Home/>}/>
         <Route path= '/addQuestion' element={
-         
+         <ProtectedRoutes>
             <AddQuestion/>
-        
+          </ProtectedRoutes>
           }/>
         
         <Route path= '/questions' element={

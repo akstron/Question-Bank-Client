@@ -1,8 +1,29 @@
 import '../styles/nav.css'
-import { Link } from 'react-router-dom';
+import { Link,Navigate } from 'react-router-dom';
+import { logout } from '../apiCalls/auth';
+import { useState } from 'react';
 
 const NavBar = () => {
+    const [redirect,setRedirect] = useState(false)
+    const handleLogout= async() =>{
+        try{
+          const res = await logout()
+    
+          console.log(res)
+          if(res.status)
+          setRedirect(true)
+    
+        }
+    
+        catch(err){
+          console.log(err)
+        }
+      }
+
+
     return ( 
+        <>
+         {redirect && <Navigate to='/login' />}
         <nav className="nav">
         <h3 className="nav__heading">QuestionBank</h3>
         <div className="nav__links">
@@ -11,9 +32,13 @@ const NavBar = () => {
         </div>
         
         <div className="nav__action">
-            <Link to="/login" className="nav__link nav__link--1">Logout</Link>
+            <button 
+                className="nav__link nav__link--1" 
+                onClick={handleLogout}
+            >Logout</button>
         </div>
         </nav>
+        </>
      );
 }
  

@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
+
 const Cards = () => {
+
     return ( 
     <>
     <div className="card">

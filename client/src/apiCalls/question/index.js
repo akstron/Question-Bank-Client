@@ -1,7 +1,7 @@
 import { API } from "../../config/backend";
 
 export const addQuestion = async (question) => {
-    const res = await fetch(`${API}/addQuestion`, {
+    const res = await fetch(`${API}/question/addQuestion`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -13,6 +13,18 @@ export const addQuestion = async (question) => {
             notes: question.notes,
             tags: question.tagarray
         }),
+    });
+
+    return res.json();
+};
+
+export const getQuestion = async () => {
+    const res = await fetch(`${API}/question/getQuestions`, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+        },
     });
 
     return res.json();

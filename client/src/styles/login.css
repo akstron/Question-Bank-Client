@@ -89,6 +89,11 @@
     color: var(--clr-error);
     align-self: center;
   }
+
+  .login__success{
+    color: var(--clr-sucsess);
+    align-self: center;
+  }
 .btn_submit{
   margin-bottom: 2rem;
 }

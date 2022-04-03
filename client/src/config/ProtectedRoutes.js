@@ -9,11 +9,12 @@ const ProtectedRoutes = ({children}) => {
     const [isLoading, setIsLoading] = useState(true);
 
     if(!user){
+        console.log('user')
         getUser().then((res) => {
             if(res.status) {
                 setUser(res.user);
-                setIsLoading(false);
             }
+            setIsLoading(false)
         })
         .catch((e) => {
             console.log(e);
