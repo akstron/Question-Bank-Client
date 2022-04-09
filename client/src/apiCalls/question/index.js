@@ -11,7 +11,9 @@ export const addQuestion = async (question) => {
             url: question.url,
             name: question.name, 
             notes: question.notes,
-            tags: question.tagarray
+            tags: question.tagarray,
+            difficulty: question.difficulty,
+            description: question.description
         }),
     });
 
