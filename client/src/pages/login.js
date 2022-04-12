@@ -28,7 +28,6 @@ const Login = () => {
            
             const data = await login(userDetails);
 
-
             console.log(data)
             if (!data.status) setError(data.error)
             else {

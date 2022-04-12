@@ -7,6 +7,7 @@ import Home from './pages/home'
 import { UserProvider } from './contexts/UserContext';
 import ProtectedRoutes from "./config/ProtectedRoutes";
 import CheckUser from "./config/checkUser";
+import DashBoard from "./pages/dashboard";
 
 function App() {
 
@@ -37,7 +38,15 @@ function App() {
           <Questions/>
         </ProtectedRoutes> 
         }/>
+
+        <Route path="/dashboard" element={
+          <DashBoard/>
+        }>
+        </Route>
+        
       </Routes>
+
+      
       </BrowserRouter>
     </UserProvider>
   )

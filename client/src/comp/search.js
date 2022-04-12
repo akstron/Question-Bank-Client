@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
 const Search = () => {
 
@@ -49,21 +50,21 @@ const Search = () => {
 
     const [error, setError] = useState(false);
     const { tag, tagarray } = qDetails;
-
+    const [user] = useContext(UserContext)
     //handleSubmit
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
+  //   const handleSubmit = async (e) => {
+  //     e.preventDefault();
 
-      // CALL API
+  //     // CALL API
 
-      // try {
-      //     const data = await addQuestion(qDetails);
-      //     console.log(data);
-      // } catch (err) {
-      //     console.log(err);
-      // }
-  };
+  //     // try {
+  //     //     const data = await addQuestion(qDetails);
+  //     //     console.log(data);
+  //     // } catch (err) {
+  //     //     console.log(err);
+  //     // }
+  // };
 
     //handle Tags
     const handleTags = () => {
@@ -102,7 +103,7 @@ const Search = () => {
         <>
         <article className="db__func">
                 <h4 className="db__user">
-                    hi, user 
+                    hi, {user.fullName}
                     <span>&#9734;</span>                    
                 </h4>
                 <div className="db__searchbox">

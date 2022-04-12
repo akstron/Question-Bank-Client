@@ -31,3 +31,16 @@ export const getQuestion = async () => {
 
     return res.json();
 };
+
+export const getStats = async (query) => {
+
+    const res = await fetch(`${API}/user/getStats?options=${query}`, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    return res.json();
+};

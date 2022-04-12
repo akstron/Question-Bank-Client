@@ -3,6 +3,8 @@
     display: grid;
     place-items: center;
     background-color: #F0F0F0;
+    position: absolute;
+    z-index: 1000;
 }
 .loader{
     width: 100px;
