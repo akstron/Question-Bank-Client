@@ -34,7 +34,10 @@ export const getQuestion = async () => {
 
 export const getStats = async (query) => {
 
-    const res = await fetch(`${API}/user/getStats?options=${query}`, {
+    const queryString = JSON.stringify(query);
+    const url = `${API}/user/getStats?options=${queryString}`;
+
+    const res = await fetch(url, {
         method: "GET",
         credentials: "include",
         headers: {
