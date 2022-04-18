@@ -7,7 +7,9 @@ import { getStats } from '../apiCalls/question';
 
 const DashBoard = () => {
 
-const [stats, setStats] = useState({})
+const [difficulty, setDifficulty] = useState([])
+const [tag, setTag] = useState([])
+
 // Gets Stats on first page load
     useEffect(()=>{
 
@@ -18,15 +20,17 @@ const [stats, setStats] = useState({})
         {
             "type":"difficulty"
         }]
-        console.log(query)
 
         // Calling API
         const fetchData = async() =>{
             try{
                 const data = await getStats(query);
                 console.log(data)
-
-                if(data.status) setStats(data)
+                
+                if(data.status) {
+                    setTag(data.stats[0])
+                    setDifficulty(data.stats[1])
+                }
             }
     
             catch(err){
@@ -38,20 +42,31 @@ const [stats, setStats] = useState({})
 
     },[])
 
-
-// MAP STATISTICS
-
-// // const difficultyBG = stats.map((s)=>{
-//         return (
-//             <span className="graph-barBack">
-//             <li className="graph-bar" style={{'width':'28.5%'}}>
-//             <span className="graph-legend">Mon</span>
-//             </li>
-//             </span> 
-//         )
-// // })
+    let dsum = difficulty.reduce((s,b) => s+parseInt(b.count),0)
+    let tsum = tag.reduce((s,b) => s+parseInt(b.count),0)
 
 
+    const difficultyGraph = difficulty.map((s)=>{
+        
+        return (
+            <span className="graph-barBack" key={s.id}>
+            <li className="graph-bar" style={{'width':`${s.count*100/dsum}%`}} width={s.count}>
+            <span className="graph-legend">{s.difficulty}</span>
+            </li>
+            </span> 
+        )
+    })
+
+    const tagGraph = tag.map((s)=>{
+        
+        return (
+            <span className="graph-barBack" key={s.tagId}>
+            <li className="graph-bar" style={{'width':`${s.count*100/tsum}%`}} width={s.count}>
+            <span className="graph-legend tag">{s.TagName}</span>
+            </li>
+            </span> 
+        )
+    })
 // DESIGN CODE
     return ( 
         <>
@@ -80,45 +95,33 @@ const [stats, setStats] = useState({})
             <div className="dash__right">
                     <div className="dash__difficulty">
                         <h3 className="dash__difficulty_h2">
-                            Difficulty Level
+                            Difficuty Level
                         </h3>
                         <div className="wrap">   
                         <div className="barGraph">
                             <ul className="graph">
                             
-                            <span className="graph-barBack">    
-                                <li className="graph-bar" style={{'width':'28.5%'}} width="28.5">
-                                <span className="graph-legend">Tue</span>
-                                </li>
-                            </span>
+                            {difficultyGraph}
                             
-                            <span className="graph-barBack">    
-                                <li className="graph-bar" style={{'width':'85%'}} width="28.5">
-                                <span className="graph-legend">Tue</span>
-                                </li>
-                            </span>
-
-                            <span class="graph-barBack">    
-                                <li class="graph-bar" data-value="70">
-                                <span class="graph-legend">Wed</span>
-                                </li>
-                            </span>
-
-                            <span class="graph-barBack">    
-                                <li class="graph-bar" data-value="50">
-                                <span class="graph-legend">Thu</span>
-                                </li>
-                            </span>
-
-                            <span class="graph-barBack">    
-                                <li class="graph-bar" data-value="68">
-                                <span class="graph-legend">Fri</span>
-                                </li>
-                            </span>      
                             </ul>
                         </div>
+                        </div>
                     </div>
-                </div>
+
+                    <div className="dash__difficulty">
+                        <h3 className="dash__difficulty_h2">
+                            TagName Vs Count
+                        </h3>
+                        <div className="wrap">   
+                        <div className="barGraph">
+                            <ul className="graph">
+                            
+                            {tagGraph}
+                            
+                            </ul>
+                        </div>
+                        </div>
+                    </div>
             </div>
         </main> 
         </>

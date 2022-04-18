@@ -11,6 +11,26 @@ const Questions = () => {
   const [user,setUser] = useContext(UserContext)
   const [redirect,setRedirect] = useState(false)
 
+    // Fetch All Questions when the components first renders
+    useEffect(()=>{
+      const fetchData = async() =>{
+      try
+      {    
+             const data = await getQuestion()
+             console.log(data)
+             
+             if(!data.status) console.log(data.error)
+             
+       }
+  
+       catch (err){
+         console.log(err)
+  
+       }
+      }
+      fetchData();
+  
+    },[])  
 
   // handleLogout
 
@@ -35,26 +55,6 @@ const Questions = () => {
       console.log(err)
     }
   }
-  // Fetch All Questions when the components first renders
-  useEffect(()=>{
-    const fetchData = async() =>{
-    try
-    {    
-           const data = await getQuestion()
-           console.log(data)
-           
-           if(!data.status) console.log(data.error)
-           
-     }
-
-     catch (err){
-       console.log(err)
-
-     }
-    }
-    fetchData();
-
-  },[])
 
     return (  
       <>

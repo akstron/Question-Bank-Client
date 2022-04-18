@@ -8,6 +8,7 @@ import { UserProvider } from './contexts/UserContext';
 import ProtectedRoutes from "./config/ProtectedRoutes";
 import CheckUser from "./config/checkUser";
 import DashBoard from "./pages/dashboard";
+import ShowQuestion from "./pages/showquestion";
 
 function App() {
 
@@ -41,6 +42,11 @@ function App() {
 
         <Route path="/dashboard" element={
           <DashBoard/>
+        }>
+        </Route>
+
+        <Route path="/showQuestion/:id" element={
+          <ShowQuestion/>
         }>
         </Route>
         

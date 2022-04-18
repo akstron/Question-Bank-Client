@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../styles/addquestion.css";
+import "../styles/login.css";
 import { addQuestion } from "../apiCalls/question";
 import NavBar from "../comp/navbar";
 
@@ -13,7 +14,6 @@ const AddQuestion = () => {
         difficulty:"",
         notes: "",
         tag: "",
-        
         tagarray: [],
     });
     const [error, setError] = useState(false);
@@ -31,7 +31,13 @@ const AddQuestion = () => {
             if(!data.status) setError(data.error)
             else {
                 setSuccess(data.message)
-                qDetails({})
+                setQDetails({name: "",
+                url: "",
+                description:"",
+                difficulty:"",
+                notes: "",
+                tag: "",
+                tagarray: [],})
             }
         } catch (err) {
             console.log(err);

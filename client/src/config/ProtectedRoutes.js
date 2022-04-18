@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { getUser } from "../apiCalls/auth";
 import { UserContext } from "../contexts/UserContext";
+import Loader from '../comp/loader'
 
 const ProtectedRoutes = ({children}) => {
 
@@ -28,7 +29,7 @@ const ProtectedRoutes = ({children}) => {
      * TODO: Add a loading page
      */
     if(isLoading){
-        return 'Loading';
+        return <Loader/>
     }
 
     return user ? children : <Navigate to={'/login'} />

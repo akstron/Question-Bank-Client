@@ -91,7 +91,7 @@
   }
 
   .login__success{
-    color: var(--clr-sucsess);
+    color: var(--clr-success);
     align-self: center;
   }
 .btn_submit{
