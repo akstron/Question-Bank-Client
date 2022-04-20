@@ -47,3 +47,16 @@ export const getStats = async (query) => {
 
     return res.json();
 };
+
+export const getQuestionById = async (id) => {
+    console.log(`${API}/question/getQuestion?id=${id}`)
+    const res = await fetch(`${API}/question/getQuestion?id=${id}`, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    return res.json();
+};

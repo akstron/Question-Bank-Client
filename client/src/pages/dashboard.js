@@ -1,14 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import NavBar from '../comp/navbar';
 import '../styles/dash.css'
 import { getStats } from '../apiCalls/question';
-
+import { UserContext } from '../contexts/UserContext';
 
 
 const DashBoard = () => {
 
 const [difficulty, setDifficulty] = useState([])
 const [tag, setTag] = useState([])
+const [user] = useContext(UserContext)
+console.log(user)
 
 // Gets Stats on first page load
     useEffect(()=>{
@@ -78,10 +80,10 @@ const [tag, setTag] = useState([])
                             A
                         </div>
                         <div class="dash__fullname">
-                            Acoder
+                            {user.fullName}
                         </div>    
                         <div className="dash__username">
-                            @akscoder123
+                            @{user.username}
                         </div>
                     </div>
 
@@ -89,7 +91,9 @@ const [tag, setTag] = useState([])
                         <h3 className="dash__about__heading">
                             About
                         </h3>
-
+                        <p>
+                            {user.bio}
+                        </p>
                     </div>
             </div>
             <div className="dash__right">
