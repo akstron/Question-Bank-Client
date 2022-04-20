@@ -6,11 +6,10 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { getQuestion } from "../apiCalls/question";
 import { logout } from "../apiCalls/auth";
+import NavBar from "../comp/navbar";
 
 const Questions = () => {
-  const [user,setUser] = useContext(UserContext)
-  const [redirect,setRedirect] = useState(false)
-
+    const [questions,setQuestions] = useState([])
     // Fetch All Questions when the components first renders
     useEffect(()=>{
       const fetchData = async() =>{
@@ -19,7 +18,7 @@ const Questions = () => {
              const data = await getQuestion()
              console.log(data)
              
-             if(!data.status) console.log(data.error)
+             if(data.status) setQuestions(data.questions)
              
        }
   
@@ -32,51 +31,17 @@ const Questions = () => {
   
     },[])  
 
-  // handleLogout
-
-  const handleLogout= async() =>{
-    console.log('inside')
-
-    try{
-      const res = await logout()
-
-      console.log(res)
-      if(res.status)
-     { setUser(null)
-       setRedirect(true)
-     }
-
-      else{
-        console.log(res)
-      }
-    }
-
-    catch(err){
-      console.log(err)
-    }
-  }
 
     return (  
       <>
-        {redirect && <Navigate to='/login' />}
+        <NavBar/>
          <div className="db__container">
             <aside className="db__aside">
-                <h3 className="db__heading">
-                    QuestionBank
-                </h3>
                 <Search/>
             </aside>
 
             <main className="db__main">
-              <div className="db__main__nav">
-                  <button 
-                      className="nav__link nav__link--1" 
-                      onClick={handleLogout}>
-                      Logout
-                  </button>
-              </div>
-
-              <Cards/>
+              <Cards questions={questions}/>
             </main>
           </div>
       </>

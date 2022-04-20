@@ -3,6 +3,7 @@
     display: grid;
     -ms-grid-columns: 1.4fr 4fr;
         grid-template-columns: 1.4fr 4fr;
+
   }
   
   .db__heading {
@@ -26,7 +27,7 @@
   .db__func {
     background-color: #F0F0F0;
     padding: 1rem 3rem;
-    min-height: 95vh;
+    min-height: 100vh;
     display: -ms-grid;
     display: grid;
     -webkit-box-align: start;
@@ -174,6 +175,7 @@
     grid-row-gap: 0.7rem;
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
+    margin-right: auto
   }
   
   .card__sub-title {
