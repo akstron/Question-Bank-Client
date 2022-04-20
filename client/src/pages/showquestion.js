@@ -6,7 +6,7 @@ import '../styles/showquestion.css'
 
 const ShowQuestion = () => {
     const {id} = useParams()
-    const [details,setDetails] = useState({})
+    const [details,setDetails] = useState({tags:[]})
 
     useEffect(()=>{
         const fetchData = async()=>{

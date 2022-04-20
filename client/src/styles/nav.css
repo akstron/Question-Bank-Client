@@ -37,6 +37,7 @@
   
   .nav__link {
     text-transform: capitalize;
+    outline: none;
   }
 
   .nav__link--2 {

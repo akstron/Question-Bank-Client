@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 const Cards = ({questions}) => {
     console.log(questions)
@@ -32,8 +33,8 @@ const Cards = ({questions}) => {
                 Level : {q.difficulty}
               </p>
               <div className="card__icons">
-                <a href="/" className="card__link">&#169;</a>
-                <a href="/" className="card__link">&#174;</a>
+                <a href={`${q.url}`} target="_blank">Link</a>
+                <Link to={`/showquestion/${q.id}`} className="card__link">More</Link>
                 <a href="/" className="card__link">&#8452;</a>
               </div>
             </div>
