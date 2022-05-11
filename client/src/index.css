@@ -10,6 +10,7 @@
   --clr-grey-1: #aaa;
   --clr-primary-1:#4FBDBA;
   --clr-error:#ff3333;
+  --clr-success:#4BB543;
 }
 
 /* Global Styless                   **/
@@ -101,3 +102,12 @@ p {
   text-transform: capitalize;
   border-radius: 2px;
 }
+
+.icons{
+  border: none;
+  outline: none;
+  padding: 7px;
+  cursor: pointer;
+  background-color: white;
+}
+

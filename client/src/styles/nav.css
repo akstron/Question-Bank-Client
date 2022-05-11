@@ -3,7 +3,7 @@
     padding: 1.2rem 3rem;
     
     display: grid;
-    grid-template-columns:0.6fr 1fr 0.8fr 0.7fr;
+    grid-template-columns:0.6fr 1fr  0.7fr;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
@@ -13,28 +13,31 @@
   .nav__heading {
     color: currentColor;
     font-weight: 600;
-    justify-self: center;
+    margin-left: 5rem;
+    justify-self: start;
     position: relative;
   }
   
   .nav__heading::before {
     content: '';
     position: absolute;
-    left: -15px;
+    top:2px;
+    right: -20px;
     width: 1.4rem;
-    height: 3.2rem;
+    height: 3rem;
     background-color: var(--clr-primary-1);
   }
   
   .nav__links {
-    justify-self: center;
+    justify-self: start;
     display: grid;
-    grid-template-columns: repeat(2,max-content);
-    grid-column-gap: 3rem;
+    grid-template-columns: repeat(3,max-content);
+    grid-column-gap: 10rem;
   }
   
   .nav__link {
     text-transform: capitalize;
+    outline: none;
   }
 
   .nav__link--2 {
@@ -55,6 +58,5 @@
     justify-self: end;
     display: grid;
     align-items: center;
-    grid-template-columns: repeat(2,max-content);
     grid-column-gap: 2rem;
   }

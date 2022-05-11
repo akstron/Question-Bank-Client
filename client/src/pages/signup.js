@@ -30,17 +30,11 @@ const SignUp = () => {
 
     e.preventDefault()
      try
-     {
-    //     const res = await fetch("http://localhost:8000/register",{
-    //     method:'POST',
-    //     credentials: 'include',
-    //     headers: {
-    //          "Content-Type": "application/json",
-    //        },
-    //     body: JSON.stringify(userDetails)
+     {      
             const data = await register(userDetails)
             console.log(data)
 
+            
             if(!data.status) setError(data.error)
             else {
                 setUser(() => data.user);
@@ -123,13 +117,13 @@ const SignUp = () => {
          />
      </div>
      
-     <button type="submit" className="btn btn_submit">Login</button>
+     <button type="submit" className="btn btn_submit">Signup</button>
      </form>
      
      <p className="login__error">  {err} </p>
 
      <p className="login__text">Already have an account? &#160;
-         <Link to="/" className="login__link">Login</Link>
+         <Link to="/login" className="login__link">Login</Link>
      </p>
     </div>
     

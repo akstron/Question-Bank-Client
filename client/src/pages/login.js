@@ -1,4 +1,4 @@
-//Should add Container styles
+
 import { useState } from "react";
 import '../styles/login.css'
 import { Navigate, Link } from 'react-router-dom';
@@ -8,7 +8,7 @@ import { login } from "../apiCalls/auth";
 
 const Login = () => {
     const [user, setUser] = useContext(UserContext);
-
+ 
     // SET STATES
     const [userDetails, setUserDetails] = useState({
         email: '',
@@ -25,23 +25,16 @@ const Login = () => {
 
         e.preventDefault()
         try {
-            //    const res = await fetch("http://localhost:8000/login",{
-            //    method:'POST',
-            //    credentials: 'include',
-            //    headers: {
-            //         "Content-Type": "application/json",
-            //       },
-            //    body: JSON.stringify(userDetails)
-            // })
-            //   const data = await res.json();
+           
             const data = await login(userDetails);
-
 
             console.log(data)
             if (!data.status) setError(data.error)
             else {
-                setUser(() => data.user);
+                
+                setUser(data.user);
                 setRedirect(true)
+                console.log(user,'from login')
             }
         }
 
@@ -91,8 +84,8 @@ const Login = () => {
 
                         <button
                             type="submit"
-                            className="btn btn_submit"
-                        >Login
+                            className="btn btn_submit">
+                            Login
                         </button>
                     </form>
 
