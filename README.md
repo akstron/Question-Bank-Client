@@ -15,18 +15,23 @@ A website for keeping notes and collection of Coding questions
 
 ## Tool Screenshots
 * Login/Signup
+
 ![Login/Signup](https://github.com/akstron/Question-Bank-Client/blob/khushij/client/src/img/Screenshot%20(129).png)
 
 * Forms
+
 ![Add Question](https://github.com/akstron/Question-Bank-Client/blob/khushij/client/src/img/Screenshot%20(126).png)
 
 * View Questions
+
 ![All Questions](https://github.com/akstron/Question-Bank-Client/blob/khushij/client/src/img/Screenshot%20(139).png)
 
 * DashBoard
+
 ![Dashboard](https://github.com/akstron/Question-Bank-Client/blob/khushij/client/src/img/Screenshot%20(141).png)
 
 * Question
+
 ![Question](https://github.com/akstron/Question-Bank-Client/blob/khushij/client/src/img/Screenshot%20(140).png)
 
 
