@@ -1,6 +1,6 @@
 # Question Bank 
 
-A website for keeping notes and collection of Coding questions 
+A website for note keeping and collection of Coding questions 
 
 ## Key Features
 1. User Authentication
