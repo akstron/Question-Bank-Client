@@ -150,4 +150,5 @@
   margin-right: 1rem;
   left: -10rem;
   z-index: 9999;
+  word-wrap: break-word;
 }

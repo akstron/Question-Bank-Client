@@ -32,6 +32,11 @@
             align-items: center;
   }
   
+  .swq__edit{
+    display: flex;
+    justify-content: space-between;
+    column-gap: 1.5rem;
+  }
   .swq__shortdetails {
     padding: 1rem 0;
     color: #39424e;

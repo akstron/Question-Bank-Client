@@ -1,78 +1,76 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getSearchedAndTaggedQuestions,getSearchedQuestions } from "../apiCalls/question";
 import { UserContext } from "../contexts/UserContext";
 
-const Search = () => {
+const Search = ({searchResults}) => {
 
-// // CODE TO MANAGE EVENT ON SEARCH BAR
-//     let typingTimer;                //timer identifier
-//     const doneTypingInterval = 1000;  //time in ms (5 seconds)
-    
+  const [qDetails, setQDetails] = useState({
+    question:"",
+    tag: "",
+    tagarray: [],
+  });
 
-//     const handleQuery=(e)=>{
-//         clearTimeout(typingTimer);
-//         if (e.target.value) {
-//         typingTimer = setTimeout(function(){
-//             requestQuery(e.target.value)
-//         }, doneTypingInterval);
-//         }
-//     }
+  const [error, setError] = useState(false);
+  const {question,tag, tagarray } = qDetails;
+  const [user] = useContext(UserContext)
 
-// // REQUEST A QUERY AFTER 1 SEC OF INACTIVITY
+  // Clear Filters
+  const clearTags=()=>{
+    setQDetails({tag:"",tagarray:[]})
+  }
 
-//     const requestQuery = async (value) => {
-//         try
-//         {
-//             const res = await fetch(`http://localhost:8000/getUsers?question=${value}`,{
-//             method:'GET',
-//             credentials: 'include',
-//             headers: {
-//                  "Content-Type": "application/json",
-//                },
-            
-//          })
-//            const data = await res.json()
-//            console.log(data)
-//         }
-        
-//         catch(err){
-//              console.log(err)
-//         }
-//     }
+ // CODE TO MANAGE EVENT ON SEARCH BAR
+    let typingTimer;                //timer identifier
+    const doneTypingInterval = 1000;  //time in ms (5 seconds) 
 
-// DESIGN CODE
-          
-    const [qDetails, setQDetails] = useState({
-      question:"",
-      tag: "",
-      tagarray: [],
-    });
+// REQUEST A QUERY AFTER 1 SEC OF INACTIVITY
 
-    const [error, setError] = useState(false);
-    const { tag, tagarray } = qDetails;
-    const [user] = useContext(UserContext)
-    //handleSubmit
+const requestQuery = async() => {
+  
+  const {tagarray} = qDetails
+  
+    if(tagarray.length){
+      try{
+        console.log(tagarray)
+        const data = await getSearchedAndTaggedQuestions(question,tagarray)
+  
+        console.log(data)
+        if(data.status)
+        searchResults(data)
+      }
+        catch(err){
+            console.log(err)
+        }
+    }
+  
+    else{
+      try{
+  
+        const data = await getSearchedQuestions(question)
+  
+        console.log(data)
+        if(data.status)
+        searchResults(data)
+      }
+        catch(err){
+            console.log(err)
+        }
+    }     
+  }
 
-  //   const handleSubmit = async (e) => {
-  //     e.preventDefault();
-
-  //     // CALL API
-
-  //     // try {
-  //     //     const data = await addQuestion(qDetails);
-  //     //     console.log(data);
-  //     // } catch (err) {
-  //     //     console.log(err);
-  //     // }
-  // };
-
-    //handle Tags
+  useEffect(()=>{
+    requestQuery()
+  },[question,tagarray])
+      
+//handle Tags
     const handleTags = () => {
           const { tagarray, tag } = qDetails;
   
           tag
               ? setQDetails({ ...qDetails, tagarray: [...tagarray, tag], tag: "" })
               : setError(true);
+          requestQuery()
     };
 
     //create tags
@@ -98,7 +96,6 @@ const Search = () => {
           );
     });
   
-
     return ( 
         <>
         <article className="db__func">
@@ -108,7 +105,18 @@ const Search = () => {
                 </h4>
                 <div className="db__searchbox">
                     
-                    <input type="text" id="" className="db__input" placeholder="Search by question"/>
+                    <input 
+                        type="text"  
+                        className="db__input"
+                        placeholder="Search by question"
+                        onChange={(e) => {
+                            clearTimeout(typingTimer);
+                                typingTimer = setTimeout(()=>{
+                                  setQDetails({...qDetails, question:e.target.value})
+                                }, doneTypingInterval);
+                                
+                          }}
+                    />
                     
                     <div className="db__tag">
                       <input 
@@ -134,15 +142,9 @@ const Search = () => {
                       {tagNames}
                     </div>
 
-                    {/* <button 
-                        type="submit" 
-                        className="btn db__refresh"
-                        onSubmit={handleSubmit}
-                        >
-                      Refresh Results
-                    </button> */}
-                    <button type="submit" className="btn db__clear">
-                     Clear Filters
+                    
+                    <button type="submit" className="btn db__clear" onClick={clearTags}>
+                     Clear Tags
                     </button>
                 </div>
                 <Link to='/addQuestion' className="btn db__addquestion">

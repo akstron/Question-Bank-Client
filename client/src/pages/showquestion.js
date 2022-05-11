@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getQuestionById } from '../apiCalls/question';
 import Navbar from '../comp/navbar'
 import '../styles/showquestion.css'
-
+import { AiOutlineEdit,AiFillDelete,AiOutlineLink,AiOutlineShareAlt} from "react-icons/ai";
 const ShowQuestion = () => {
     const {id} = useParams()
     const [details,setDetails] = useState({tags:[]})
@@ -42,14 +42,19 @@ const ShowQuestion = () => {
                             Difficulty Level :  {details ? details.difficulty :'' }
                         </h4>
                         <div class="swq__edit">
-                            <button>
-                                Edit
+                            <button className='icons'>
+                                <AiOutlineEdit size={"1.8em"} title={"edit"} />
                             </button>
-                            <button>
-                                delete
+                            <button className='icons'>
+                                <AiFillDelete size={"1.8em"} title={"delete"} color={"#c53333"}/>
                             </button>
-                            <button>
-                                <a href={details? `${details.url}` :''} target="_blank">Link</a>
+                            <button className='icons'>
+                                <a href={details? `${details.url}` :''} target="_blank">
+                                    <AiOutlineLink size={"1.8em"} title={"Question Link"}/>
+                                </a>
+                            </button>
+                            <button className='icons'>
+                                <AiOutlineShareAlt size={"1.8em"} title={"share"}/>
                             </button>
                         </div>
                     </div>

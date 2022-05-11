@@ -102,3 +102,12 @@ p {
   text-transform: capitalize;
   border-radius: 2px;
 }
+
+.icons{
+  border: none;
+  outline: none;
+  padding: 7px;
+  cursor: pointer;
+  background-color: white;
+}
+

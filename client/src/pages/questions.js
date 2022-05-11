@@ -1,18 +1,14 @@
 import Search from "../comp/search"
 import Cards from "../comp/cards"
 import '../styles/questions.css'
-import { Navigate } from "react-router-dom"
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../contexts/UserContext";
+import { useEffect, useState } from "react";
 import { getQuestion } from "../apiCalls/question";
-import { logout } from "../apiCalls/auth";
 import NavBar from "../comp/navbar";
 
 const Questions = () => {
     const [questions,setQuestions] = useState([])
-    // Fetch All Questions when the components first renders
-    useEffect(()=>{
-      const fetchData = async() =>{
+    
+    const fetchData = async() =>{
       try
       {    
              const data = await getQuestion()
@@ -27,17 +23,25 @@ const Questions = () => {
   
        }
       }
-      fetchData();
-  
-    },[])  
+      
+    // Fetch All Questions when the components first renders
+    
 
+    
+
+    const searchResults = (results)=>{
+      
+      if(results.questions)
+      setQuestions(results.questions)
+
+    }
 
     return (  
       <>
         <NavBar/>
          <div className="db__container">
             <aside className="db__aside">
-                <Search/>
+                <Search searchResults={searchResults}/>
             </aside>
 
             <main className="db__main">

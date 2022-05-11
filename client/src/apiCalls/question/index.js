@@ -60,3 +60,36 @@ export const getQuestionById = async (id) => {
 
     return res.json();
 };
+
+export const getSearchedAndTaggedQuestions = async (question,tag) => {
+
+    const tags = JSON.stringify(tag);
+    const url = `${API}/question/getSearchedAndTaggedQuestions?prefixText=${question}&tags=${tags}`;
+
+    const res = await fetch(url, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    return res.json();
+};
+
+export const getSearchedQuestions = async (question) => {
+
+    const url = `${API}/question/getSearchedQuestions?prefixText=${question}`;
+
+    const res = await fetch(url, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    return res.json();
+};
+
+

@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom"
+import { AiOutlineShareAlt,AiOutlineLink} from "react-icons/ai";
+import { MdReadMore } from "react-icons/md";
+
 
 const Cards = ({questions}) => {
     console.log(questions)
@@ -33,9 +36,15 @@ const Cards = ({questions}) => {
                 Level : {q.difficulty}
               </p>
               <div className="card__icons">
-                <a href={`${q.url}`} target="_blank">Link</a>
-                <Link to={`/showquestion/${q.id}`} className="card__link">More</Link>
-                <a href="/" className="card__link">&#8452;</a>
+                <Link to={`/showquestion/${q.id}`} className="icons">
+                  <MdReadMore size={"1.8em"} title={"Read More"}/>
+                </Link>
+                <a href={`${q.url}`} target="_blank" className="icons">
+                    <AiOutlineLink size={"1.8em"} title={"Question Link"}/>
+                </a>
+                <button className='icons'>
+                    <AiOutlineShareAlt size={"1.8em"} title={"share"}/>
+                </button>
               </div>
             </div>
       </div>
