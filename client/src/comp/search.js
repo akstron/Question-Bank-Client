@@ -17,7 +17,7 @@ const Search = ({searchResults}) => {
 
   // Clear Filters
   const clearTags=()=>{
-    setQDetails({tag:"",tagarray:[]})
+    setQDetails({...qDetails,tag:"",tagarray:[]})
   }
 
  // CODE TO MANAGE EVENT ON SEARCH BAR
@@ -34,7 +34,7 @@ const requestQuery = async() => {
       try{
         console.log(tagarray)
         const data = await getSearchedAndTaggedQuestions(question,tagarray)
-  
+        
         console.log(data)
         if(data.status)
         searchResults(data)
@@ -46,7 +46,7 @@ const requestQuery = async() => {
   
     else{
       try{
-  
+        console.log(question)
         const data = await getSearchedQuestions(question)
   
         console.log(data)
@@ -60,7 +60,9 @@ const requestQuery = async() => {
   }
 
   useEffect(()=>{
+    console.log(tagarray)
     requestQuery()
+    
   },[question,tagarray])
       
 //handle Tags
@@ -70,7 +72,6 @@ const requestQuery = async() => {
           tag
               ? setQDetails({ ...qDetails, tagarray: [...tagarray, tag], tag: "" })
               : setError(true);
-          requestQuery()
     };
 
     //create tags
@@ -85,9 +86,11 @@ const requestQuery = async() => {
                   {value}
                   <span
                       onClick={(e) => {
-                          const { tagarray } = qDetails;
-                          tagarray.splice(e.target.parentElement.id, 1);
-                          setQDetails({ ...qDetails, tagarray });
+                          setQDetails(()=>{
+                           const { tagarray } = qDetails;
+                            tagarray.splice(e.target.parentElement.id, 1);
+                            return { ...qDetails, tagarray :[...tagarray] }
+                          });
                       }}
                   >
                       &#x2715;

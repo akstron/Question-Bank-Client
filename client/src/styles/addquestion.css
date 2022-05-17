@@ -123,3 +123,19 @@
   -o-object-fit: cover;
      object-fit: cover;
 }
+
+.showquestion textarea {
+padding: 3rem 2rem;
+height:20rem;
+border: none;
+}
+
+.showquestion textarea:focus {
+ border: none;
+  }
+
+.swq__details span {
+  padding: 2rem;
+  color: rgb(197, 51, 51)
+  }
+  
