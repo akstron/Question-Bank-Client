@@ -1,17 +1,22 @@
 import { useContext, useEffect, useState } from 'react';
 import NavBar from '../comp/navbar';
+import { useParams } from 'react-router-dom';
 import '../styles/dash.css'
 import { getStats } from '../apiCalls/question';
 import { UserContext } from '../contexts/UserContext';
+import Loader from '../comp/loader';
+import { getUser } from '../apiCalls/user';
 
 
 const DashBoard = () => {
-const [difficulty, setDifficulty] = useState([])
-const [tag, setTag] = useState([])
-const [user] = useContext(UserContext)
-console.log(user)
+    const {userId} = useParams();
+    const [difficulty, setDifficulty] = useState([]);
+    const [tag, setTag] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [user, setUser] = useState(null); 
+    console.log(user)
 
-// Gets Stats on first page load
+    // Gets Stats on first page load
     useEffect(()=>{
 
         //Setting Query
@@ -25,12 +30,15 @@ console.log(user)
         // Calling API
         const fetchData = async() =>{
             try{
-                const data = await getStats(user.id, query);
+                const data = await getStats(userId, query);
+                const user = await getUser(userId);
                 console.log(data)
                 
-                if(data.status) {
-                    setTag(data.stats[0])
-                    setDifficulty(data.stats[1])
+                if(data.status && user.status) {
+                    setUser(user.user);
+                    setTag(data.stats[0]);
+                    setDifficulty(data.stats[1]);
+                    setIsLoading(false);
                 }
             }
     
@@ -41,7 +49,11 @@ console.log(user)
         }
        fetchData();
 
-    },[])
+    },[]);
+
+    if(isLoading){
+        return <Loader/>
+    }
 
     let dsum = difficulty.reduce((s,b) => s+parseInt(b.count),0)
     let tsum = tag.reduce((s,b) => s+parseInt(b.count),0)

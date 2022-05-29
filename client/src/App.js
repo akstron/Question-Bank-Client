@@ -7,7 +7,8 @@ import Home from './pages/home'
 import { UserProvider } from './contexts/UserContext';
 import ProtectedRoutes from "./config/ProtectedRoutes";
 import CheckUser from "./config/checkUser";
-import DashBoard from "./pages/dashboard";
+import MyDashBoard from "./pages/dashboard";
+import UserDashboard from "./pages/userDashboard";
 import ShowQuestion from "./pages/showquestion";
 
 
@@ -41,8 +42,17 @@ function App() {
         </ProtectedRoutes> 
         }/>
 
-        <Route path="/dashboard" element={
-          <DashBoard/>
+        <Route path="/dashboard/me" element={
+          <ProtectedRoutes>
+          <MyDashBoard/>
+          </ProtectedRoutes>
+        }>
+        </Route>
+
+        <Route path="/dashboard/:userId" element={
+          <ProtectedRoutes>
+          <UserDashboard/>
+          </ProtectedRoutes>
         }>
         </Route>
 

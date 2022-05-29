@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { getUser } from "../apiCalls/auth";
+import { getMe } from "../apiCalls/auth";
 import { UserContext } from "../contexts/UserContext";
 import Loader from '../comp/loader'
 
@@ -11,7 +11,7 @@ const ProtectedRoutes = ({children}) => {
 
     if(!user){
         
-        getUser().then((res) => {
+        getMe().then((res) => {
             if(res.status) {
                 setUser(res.user);
             }

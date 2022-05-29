@@ -34,7 +34,7 @@ const NavBar = () => {
         <div className="nav__links">
             <Link to="/questions" className="nav__link">all questions</Link>
             <Link to="/addQuestion" className="nav__link">Add question</Link>
-            <Link to="/dashboard" className="nav__link">Dashboard</Link>
+            <Link to="/dashboard/me" className="nav__link">Dashboard</Link>
         </div>
         
         <div className="nav__action">
