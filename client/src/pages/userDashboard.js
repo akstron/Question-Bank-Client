@@ -5,8 +5,20 @@ import '../styles/dash.css'
 import { getStats } from '../apiCalls/question';
 import { UserContext } from '../contexts/UserContext';
 import Loader from '../comp/loader';
-import { getUser } from '../apiCalls/user';
+import { getUser, sendFriendRequest, unsendFriendRequest } from '../apiCalls/user';
 
+const getFriendButtonText = (friendshipStatus) => {
+    if(friendshipStatus === 'friend'){
+        return 'Friend';
+    }
+    if(friendshipStatus === 'not friend'){
+        return 'Send friend request';
+    }
+    if(friendshipStatus === 'friend request sent'){
+        return 'Friend request sent';
+    }
+    return 'Accept friend request';
+}
 
 const DashBoard = () => {
     const {userId} = useParams();
@@ -14,7 +26,8 @@ const DashBoard = () => {
     const [tag, setTag] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState(null); 
-    const [loggedInUser] = useContext(UserContext);
+    const [friendButtonText, setFriendButtonText] = useState('not friend');
+    // const [loggedInUser] = useContext(UserContext);
     // console.log(user)
     // console.log('loggedInUser', loggedInUser);
 
@@ -38,6 +51,7 @@ const DashBoard = () => {
                 
                 if(data.status && user.status) {
                     setUser(user.user);
+                    setFriendButtonText(getFriendButtonText(user.user.friendshipStatus));
                     setTag(data.stats[0]);
                     setDifficulty(data.stats[1]);
                     setIsLoading(false);
@@ -83,17 +97,39 @@ const DashBoard = () => {
         )
     })
 
-    const getFriendButtonText = () => {
-        if(user.friendshipStatus === 'friend'){
-            return 'Friend';
+
+    /* 
+        Handle Friend button click here
+        TODO: Handle other cases as well
+    */
+    const handleFriendButtonClick = async () => {
+        try{
+            if(user.friendshipStatus === 'not friend'){
+                await sendFriendRequest(user.id);
+                const newUser = user;
+                newUser.friendshipStatus = 'friend request sent';
+                setUser(newUser);
+                setFriendButtonText(getFriendButtonText(newUser.friendshipStatus));
+            } else if(user.friendshipStatus === 'friend request received'){
+                /**
+                 * Handle using a MODAL
+                 * accept or reject
+                 */
+            } else if(user.friendshipStatus === 'friend request sent'){
+                await unsendFriendRequest(user.id);
+                const newUser = user;
+                newUser.friendshipStatus = 'not friend';
+                setUser(newUser);
+                setFriendButtonText(getFriendButtonText(newUser.friendshipStatus));
+            } else {
+                /**
+                 * Handle using a MODAL with question:
+                 * Are you sure, you want to unfriend?
+                 */
+            }
+        } catch(e){
+            console.log(e);
         }
-        if(user.friendshipStatus === 'not friend'){
-            return 'Send friend request';
-        }
-        if(user.friendshipStatus === 'friend request sent'){
-            return 'Friend request sent';
-        }
-        return 'Accept friend request';
     }
     
 // DESIGN CODE
@@ -106,9 +142,9 @@ const DashBoard = () => {
                         <div class="dash__name">
                             A
                         </div>
-                        <button>
+                        <button onClick={() => handleFriendButtonClick()}>
                             {
-                                getFriendButtonText()
+                                friendButtonText
                             }
                         </button>
                         <div class="dash__fullname">
