@@ -43,3 +43,18 @@ export const unsendFriendRequest = async (receiverId) => {
 
     return res.json();
 }
+
+export const removeFriend = async (friendId) => {
+    const res = await fetch(`${API}/user/removeFriend`, {
+        method: 'DELETE', 
+        credentials: 'include', 
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            friendId
+        })
+    });
+
+    return res.json();
+}

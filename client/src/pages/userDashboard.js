@@ -5,7 +5,7 @@ import '../styles/dash.css'
 import { getStats } from '../apiCalls/question';
 import { UserContext } from '../contexts/UserContext';
 import Loader from '../comp/loader';
-import { getUser, sendFriendRequest, unsendFriendRequest } from '../apiCalls/user';
+import { getUser, removeFriend, sendFriendRequest, unsendFriendRequest } from '../apiCalls/user';
 
 const getFriendButtonText = (friendshipStatus) => {
     if(friendshipStatus === 'friend'){
@@ -126,6 +126,11 @@ const DashBoard = () => {
                  * Handle using a MODAL with question:
                  * Are you sure, you want to unfriend?
                  */
+                await removeFriend(user.id);
+                const newUser = user;
+                newUser.friendshipStatus = 'not friend';
+                setUser(newUser);
+                setFriendButtonText(getFriendButtonText(newUser.friendshipStatus));
             }
         } catch(e){
             console.log(e);
