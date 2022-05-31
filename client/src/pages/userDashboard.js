@@ -14,7 +14,9 @@ const DashBoard = () => {
     const [tag, setTag] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState(null); 
-    console.log(user)
+    const [loggedInUser] = useContext(UserContext);
+    // console.log(user)
+    // console.log('loggedInUser', loggedInUser);
 
     // Gets Stats on first page load
     useEffect(()=>{
@@ -80,6 +82,19 @@ const DashBoard = () => {
             </span> 
         )
     })
+
+    const getFriendButtonText = () => {
+        if(user.friendshipStatus === 'friend'){
+            return 'Friend';
+        }
+        if(user.friendshipStatus === 'not friend'){
+            return 'Send friend request';
+        }
+        if(user.friendshipStatus === 'friend request sent'){
+            return 'Friend request sent';
+        }
+        return 'Accept friend request';
+    }
     
 // DESIGN CODE
     return ( 
@@ -91,6 +106,11 @@ const DashBoard = () => {
                         <div class="dash__name">
                             A
                         </div>
+                        <button>
+                            {
+                                getFriendButtonText()
+                            }
+                        </button>
                         <div class="dash__fullname">
                             {user.fullName}
                         </div>    
