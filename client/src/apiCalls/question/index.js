@@ -92,4 +92,20 @@ export const getSearchedQuestions = async (question) => {
     return res.json();
 };
 
+export const deleteQuestion = async (id) => {
 
+    const url = `${API}/question/deleteQuestion`;
+
+    const res = await fetch(url, {
+        method: "DELETE",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          "questionId":`${id}`  
+        })
+    });
+
+    return res.json();
+};

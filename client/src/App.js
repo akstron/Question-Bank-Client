@@ -9,6 +9,7 @@ import ProtectedRoutes from "./config/ProtectedRoutes";
 import CheckUser from "./config/checkUser";
 import DashBoard from "./pages/dashboard";
 import ShowQuestion from "./pages/showquestion";
+import EditQuestion from "./pages/editQuestion";
 
 function App() {
 
@@ -30,7 +31,18 @@ function App() {
         <Route path='/home' element={<Home/>}/>
         <Route path= '/addQuestion' element={
          <ProtectedRoutes>
-            <AddQuestion/>
+            <AddQuestion text={"Add"} states={
+              {
+                
+                  name:"",
+                  url: "",
+                  description:"",
+                  difficulty:"",
+                  notes: "",
+                  tag: "",
+                  tags: []
+              
+            }}/>
           </ProtectedRoutes>
           }/>
         
@@ -39,6 +51,12 @@ function App() {
           <Questions/>
         </ProtectedRoutes> 
         }/>
+
+        <Route path= '/editQuestion/:id' element={
+          <EditQuestion/>
+        }/>
+
+        
 
         <Route path="/dashboard" element={
           <DashBoard/>

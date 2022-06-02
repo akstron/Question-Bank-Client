@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/addquestion.css";
 import "../styles/login.css";
 import { addQuestion } from "../apiCalls/question";
 import NavBar from "../comp/navbar";
 
-const AddQuestion = () => {
+const AddQuestion = ({text,states}) => {
 
     // SETTING STATES
     const [qDetails, setQDetails] = useState({
@@ -15,7 +15,22 @@ const AddQuestion = () => {
         notes: "",
         tag: "",
         tagarray: [],
+        visibility:''
     });
+
+    // Updates states as prop changes
+    useEffect(() => {
+      
+        setQDetails({...qDetails,
+            name:states.name,
+            url: states.url,
+            description:states.description,
+            difficulty:states.difficulty,
+            notes: states.notes
+            })
+    },[states])
+
+    console.log(states)
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
     const [tagError, setTagError] = useState(false);
@@ -37,7 +52,8 @@ const AddQuestion = () => {
                 difficulty:"",
                 notes: "",
                 tag: "",
-                tagarray: [],})
+                tagarray: [],
+            })
             }
         } catch (err) {
             console.log(err);
@@ -81,7 +97,7 @@ const AddQuestion = () => {
         <NavBar/>
         <main className="aq-container">
             <div className="aq">
-                <h2 className="aq__heading"> Add Question </h2>
+                <h2 className="aq__heading"> {text} Question </h2>
 
                 <form className="aq__form" onSubmit={handleSubmit}>
                     <div className="aq__input">
@@ -153,10 +169,20 @@ const AddQuestion = () => {
                         </textarea>
                     </div>
 
+                    <div className="aq__input">
+                        <label className="aq__label" htmlFor="q-visibility">Question Visibility</label>
+                        <select id="q-visibility" onChange={(e)=> setQDetails({ ...qDetails, visibility: e.target.value })}>
+                        <option value="global">Global</option>
+                        <option value="friends">Friends</option>
+                        <option value="me">Me</option>
+                        <option value="specific">Specific</option>
+                        </select>
+                    </div>
+
                     <div className="aq__tag">
                         <div className="aq__tag__form">
                             <label htmlFor="q-tags">
-                                Add tags{" "}
+                                {text} tags{" "}
                                 {tagError && !tag && <span>&#160;&#160;tag cannot be empty</span>}
                             </label>
                             <input
@@ -169,12 +195,14 @@ const AddQuestion = () => {
                                 }}
                             />
                         </div>
+
+
                         <button
                             type="button"
                             className="btn aq__tag__btn"
                             onClick={handleTags}
                         >
-                            Add Tag
+                            {text} Tag
                         </button>
                     </div>
 
