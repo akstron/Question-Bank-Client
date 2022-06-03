@@ -38,6 +38,10 @@
   .nav__link {
     text-transform: capitalize;
     outline: none;
+    background-color: transparent;
+    border: none;
+    color: var(--clr-white);
+    cursor: pointer;
   }
 
   .nav__link--2 {
@@ -57,6 +61,24 @@
   .nav__action {
     justify-self: end;
     display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     grid-column-gap: 2rem;
+    position: relative;
   }
+
+  .nav__notification::after{
+    content: "1";
+    font-size: 1.2rem;
+    width: 10px;
+    height: 10px;
+    background-color: var(--clr-primary-1);
+    position: absolute;
+    top: -2px;
+    left: 0px;
+  }
+
+
+  
+
+  

@@ -3,6 +3,9 @@ import { Link,Navigate } from 'react-router-dom';
 import { logout } from '../apiCalls/auth';
 import { useContext, useState } from 'react';
 import { UserContext } from '../contexts/UserContext';
+import {AiFillBell} from "react-icons/ai";
+import Notification from './notification';
+
 
 const NavBar = () => {
     const [redirect,setRedirect] = useState(false)
@@ -39,6 +42,10 @@ const NavBar = () => {
         </div>
         
         <div className="nav__action">
+        {/* <div className="nav__notification">
+        <AiFillBell size={"1.8em"}/>
+        </div> */}
+            <Notification/>
             <button 
                 className="nav__link nav__link--1" 
                 onClick={handleLogout}

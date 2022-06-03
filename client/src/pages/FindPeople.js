@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import NavBar from '../comp/navbar';
 import '../styles/findpeople.css'
+import {AiOutlineSearch} from "react-icons/ai";
 
 const FindPeople = () => {
 
@@ -12,6 +13,8 @@ const [active,setActive] = useState(true)
         <div className="find">
             <div className="find__search">
                 <input type="text" name="find" id="find" className="find__people" placeholder="Find People"/>
+                <AiOutlineSearch size={"1.8em"} className="searchicon" />
+                
                 <button 
                 className={`btn find__btn ${active ? "find__btn__active":''}`}
                 onClick={()=> setActive(true)}
