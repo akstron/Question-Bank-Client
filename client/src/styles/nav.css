@@ -31,7 +31,7 @@
   .nav__links {
     justify-self: start;
     display: grid;
-    grid-template-columns: repeat(3,max-content);
+    grid-template-columns: repeat(4,max-content);
     grid-column-gap: 10rem;
   }
   

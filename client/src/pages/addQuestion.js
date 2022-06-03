@@ -4,6 +4,7 @@ import "../styles/login.css";
 import { addQuestion } from "../apiCalls/question";
 import NavBar from "../comp/navbar";
 
+// INCLUDES BOTH FUNCTIONALITY FOR ADD AND EDIT PAGES
 const AddQuestion = ({text,states}) => {
 
     // SETTING STATES
@@ -18,7 +19,17 @@ const AddQuestion = ({text,states}) => {
         visibility:''
     });
 
-    // Updates states as prop changes
+    // error for form
+    const [error, setError] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [tagError, setTagError] = useState(false); //tagerror
+    
+    // for edit question
+
+    const [addTags, setAddTags] = useState([])  
+    const [removeTags, setRemoveTags] = useState([])
+
+    // Updates states as prop changes from edit page
     useEffect(() => {
       
         setQDetails({...qDetails,
@@ -30,43 +41,70 @@ const AddQuestion = ({text,states}) => {
             })
     },[states])
 
+    // Destructuring states
     console.log(states)
-    const [error, setError] = useState(false);
-    const [success, setSuccess] = useState(false);
-    const [tagError, setTagError] = useState(false);
-    const { name, url, notes,description,difficulty, tag, tagarray } = qDetails;
+        const { name, url, notes,description,difficulty, tag, tagarray } = qDetails;
 
-
+// Handle form Submission
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         try {
             setError('')
             setSuccess('')
-            const data = await addQuestion(qDetails);
-            if(!data.status) setError(data.error)
-            else {
-                setSuccess(data.message)
-                setQDetails({name: "",
-                url: "",
-                description:"",
-                difficulty:"",
-                notes: "",
-                tag: "",
-                tagarray: [],
-            })
+
+            // for Adding question
+            if(text==='Add')
+            {const data = await addQuestion(qDetails);
+                if(!data.status) setError(data.error)
+                else {
+                    setSuccess(data.message)
+                    setQDetails({name: "",
+                    url: "",
+                    description:"",
+                    difficulty:"",
+                    notes: "",
+                    tag: "",
+                    tagarray: [],
+                })
+                }
             }
+            // for editing question
+            else {
+                const data = await (qDetails);
+                console.log(data)
+                if(!data.status) setError(data.error)
+                else {
+                    setSuccess(data.message)
+                    // setQDetails({name: "",
+                    // url: "",
+                    // description:"",
+                    // difficulty:"",
+                    // notes: "",
+                    // tag: "",
+                    // tagarray: [],
+                }
+            }
+           
         } catch (err) {
             console.log(err);
         }
     };
 
-    // HANDLE FUNCTIONS
+    // ADD TAGS FUNCTIONS
     const handleTags = () => {
         const { tagarray, tag } = qDetails;
 
         tag
             ? setQDetails({ ...qDetails, tagarray: [...tagarray, tag], tag: "" })
             : setTagError(true);
+        
+        // for edit question
+        if( text === "Edit")
+       {
+           if(tag) setAddTags([...addTags,tag])
+       }
+        
     };
 
     // CREATE TAGS

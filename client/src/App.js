@@ -10,6 +10,7 @@ import CheckUser from "./config/checkUser";
 import DashBoard from "./pages/dashboard";
 import ShowQuestion from "./pages/showquestion";
 import EditQuestion from "./pages/editQuestion";
+import FindPeople from "./pages/FindPeople";
 
 function App() {
 
@@ -52,11 +53,15 @@ function App() {
         </ProtectedRoutes> 
         }/>
 
+          <Route path='/findpeople' element={
+           
+              <FindPeople/>
+       
+          } />
+
         <Route path= '/editQuestion/:id' element={
           <EditQuestion/>
         }/>
-
-        
 
         <Route path="/dashboard" element={
           <DashBoard/>

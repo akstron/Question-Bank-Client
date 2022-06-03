@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import { getQuestionById } from '../apiCalls/question';
 import { useEffect, useState } from 'react';
 
+
+// MOST EDIT FUNCTIONALITY IS COMBINED WITH ADD QUESTION PAGE
+
 const EditQuestion = () => {
     const {id} = useParams()
     const [details,setDetails] = useState(
@@ -27,6 +30,8 @@ const EditQuestion = () => {
 
         fetchData()
     },[])
+
+
 
     console.log(details)
     return (  
