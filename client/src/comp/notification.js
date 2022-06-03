@@ -32,7 +32,6 @@ const Notification = () => {
             </div>
              <div class = "sec">
                <div class = "profCont">
-               {/* <img class = "profile" src = "https://c1.staticflickr.com/4/3725/10214643804_75c0b6eeab_b.jpg"> */}
                 </div>
                <div class = "txt">Madison liked your post: "Pure css notification box"</div>
               <div class = "txt sub">11/6 - 4:04 pm</div>
