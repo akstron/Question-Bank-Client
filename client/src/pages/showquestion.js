@@ -11,7 +11,7 @@ const ShowQuestion = () => {
 
     const navigate = useNavigate()
     const [edit,setEdit]= useState(false)
-    const [del,setDel] = useState(false)
+
     
 
 

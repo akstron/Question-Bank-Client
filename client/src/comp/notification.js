@@ -18,36 +18,31 @@ const Notification = () => {
         <div class = "display">
           {/* <div class = "cont"><!-- Fold this div and try deleting evrything inbetween --> */}
              <div class = "sec new">
-               <div class = "txt">James liked your post: "Pure css notification box"</div>
-              <div class = "txt sub">11/7 - 2:30 pm</div>
+               <div class = "txt">James liked your post: "Pure css notification box"</div>           
             </div>
             
              <div class = "sec new">
                <div class = "txt">Annita liked your post: "Pure css notification box"</div>
-              <div class = "txt sub">11/7 - 2:13 pm</div>
             </div>
              <div class = "sec">
                <div class = "txt">Brie liked your post: "Pure css notification box"</div>
-              <div class = "txt sub">11/6 - 9:35 pm</div>
             </div>
              <div class = "sec">
                <div class = "profCont">
                 </div>
                <div class = "txt">Madison liked your post: "Pure css notification box"</div>
-              <div class = "txt sub">11/6 - 4:04 pm</div>
             </div>
              <div class = "sec">
                <div class = "profCont">
                 </div>
                <div class = "txt">Ted liked your post: "Pure css notification box"</div>
-              <div class = "txt sub">11/6 - 10:37 am</div>
             </div>
              <div class = "sec">
                <div class = "profCont">
                {/* <img class = "profile" src = "https://upload.wikimedia.org/wikipedia/commons/d/dd/Pat-headshot-square.jpg"> */}
                 </div>
                <div class = "txt">Tommas liked your post: "Pure css notification box"</div>
-              <div class = "txt sub">11/5 - 7:30 pm</div>
+              
             </div>
              <div class = "sec">
                <div class = "profCont">
