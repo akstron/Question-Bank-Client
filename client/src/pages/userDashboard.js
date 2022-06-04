@@ -6,6 +6,7 @@ import { getStats } from '../apiCalls/question';
 import { UserContext } from '../contexts/UserContext';
 import Loader from '../comp/loader';
 import { getUser, removeFriend, sendFriendRequest, unsendFriendRequest } from '../apiCalls/user';
+import Modal from '../comp/modal';
 
 const getFriendButtonText = (friendshipStatus) => {
     if(friendshipStatus === 'friend'){
@@ -17,7 +18,7 @@ const getFriendButtonText = (friendshipStatus) => {
     if(friendshipStatus === 'friend request sent'){
         return 'Friend request sent';
     }
-    return 'Accept friend request';
+    return 'Pending friend request';
 }
 
 const DashBoard = () => {
@@ -152,6 +153,14 @@ const DashBoard = () => {
                                 friendButtonText
                             }
                         </button>
+                        <Modal
+                            id={'modal-friend-reqest-response'}
+                            content={'Accept friend request?'}
+                            positiveText={'Yes'}
+                            negativeText={'NO'}
+                            // onPositiveClick={}
+                            // onNegativeClick={}
+                        />
                         <div class="dash__fullname">
                             {user.fullName}
                         </div>    

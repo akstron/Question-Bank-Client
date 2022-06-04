@@ -84,16 +84,16 @@
     left: 0;
     z-index: 999;
     visibility: hidden;
-    opacity: 0;
+    /* opacity: 0; */
     pointer-events: none;
     transition: all 0.3s;
     padding: 1rem 2rem;
   }
-  .modal-window:target {
+  /* .modal-window:target {
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
-  }
+  } */
   .modal-window > div {
     width: 400px;
     position: absolute;

@@ -1,6 +1,7 @@
 import { API } from "../../config/backend";
 
 export const addQuestion = async (question) => {
+    console.log(question);
     const res = await fetch(`${API}/question/addQuestion`, {
         method: "POST",
         credentials: "include",
@@ -13,7 +14,8 @@ export const addQuestion = async (question) => {
             notes: question.notes,
             tags: question.tagarray,
             difficulty: question.difficulty,
-            description: question.description
+            description: question.description, 
+            visibility: question.visibility
         }),
     });
 

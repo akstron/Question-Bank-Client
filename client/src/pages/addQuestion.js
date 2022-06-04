@@ -71,7 +71,7 @@ const AddQuestion = ({text,states}) => {
             }
             // for editing question
             else {
-                const data = await (qDetails);
+                const data = await addQuestion(qDetails);
                 console.log(data)
                 if(!data.status) setError(data.error)
                 else {

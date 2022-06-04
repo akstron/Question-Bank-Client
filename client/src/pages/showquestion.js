@@ -4,14 +4,15 @@ import { deleteQuestion, getQuestionById } from '../apiCalls/question';
 import Navbar from '../comp/navbar'
 import '../styles/showquestion.css'
 import { AiOutlineEdit,AiFillDelete,AiOutlineLink,AiOutlineShareAlt} from "react-icons/ai";
+import Modal from '../comp/modal';
 
 const ShowQuestion = () => {
     const {id} = useParams()
     const [details,setDetails] = useState({tags:[]})
 
     const navigate = useNavigate()
-    const [edit,setEdit]= useState(false)
-    const [del,setDel] = useState(false)
+    // const [edit,setEdit]= useState(false)
+    // const [del,setDel] = useState(false)
     
 
 
@@ -70,23 +71,8 @@ const ShowQuestion = () => {
                                 <AiFillDelete size={"1.8em"} title={"delete"} color={"#c53333"}/>
                             </a>
 
-                            <div id="open-modal" class="modal-window">
-                            <div>
-                                <a href="#" title="Close" class="modal-close">Close</a>
-                                <h4>Are you sure you want to delete this question?</h4>
-                                <div>
-
-                                    <button className='btn' onClick={del} >
-                                        YES
-                                    </button>
-                                    <a className='btn' href='#'>
-                                        CANCEL
-                                    </a>
-
-                                </div>
-                                
-                            </div>
-                            </div>
+                            <Modal onPositiveClick={del} content={'Are you sure you want to delete this question?'}
+                            positiveText={'Yes'} negativeText={'Cancel'} id={'open-modal'}/>
                         
                             <button className='icons'>
                                 <a href={details? `${details.url}` :''} target="_blank">
