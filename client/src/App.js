@@ -10,6 +10,8 @@ import CheckUser from "./config/checkUser";
 import MyDashBoard from "./pages/dashboard";
 import UserDashboard from "./pages/userDashboard";
 import ShowQuestion from "./pages/showquestion";
+import EditQuestion from "./pages/editQuestion";
+import FindPeople from "./pages/FindPeople";
 
 
 function App() {
@@ -32,7 +34,18 @@ function App() {
         <Route path='/home' element={<Home/>}/>
         <Route path= '/addQuestion' element={
          <ProtectedRoutes>
-            <AddQuestion/>
+            <AddQuestion text={"Add"} states={
+              {
+                
+                  name:"",
+                  url: "",
+                  description:"",
+                  difficulty:"",
+                  notes: "",
+                  tag: "",
+                  tags: []
+              
+            }}/>
           </ProtectedRoutes>
           }/>
         
@@ -40,6 +53,16 @@ function App() {
         <ProtectedRoutes>
           <Questions/>
         </ProtectedRoutes> 
+        }/>
+
+          <Route path='/findpeople' element={
+           
+              <FindPeople/>
+       
+          } />
+
+        <Route path= '/editQuestion/:id' element={
+          <EditQuestion/>
         }/>
 
         <Route path="/dashboard/me" element={

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getQuestionById } from '../apiCalls/question';
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
+import { deleteQuestion, getQuestionById } from '../apiCalls/question';
 import Navbar from '../comp/navbar'
 import '../styles/showquestion.css'
 import { AiOutlineEdit,AiFillDelete,AiOutlineLink,AiOutlineShareAlt} from "react-icons/ai";
@@ -8,6 +8,8 @@ import { AiOutlineEdit,AiFillDelete,AiOutlineLink,AiOutlineShareAlt} from "react
 const ShowQuestion = () => {
     const {id} = useParams()
     const [details,setDetails] = useState({tags:[]})
+
+    const navigate = useNavigate()
     const [edit,setEdit]= useState(false)
     const [del,setDel] = useState(false)
     
@@ -32,6 +34,18 @@ const ShowQuestion = () => {
             return <button key={tag.id} type="button" className="btn aq__dtags__btn">{tag.name} </button>
     })
 
+    const del = async ()=>{
+        
+        try{
+            const data = await deleteQuestion(id)
+            console.log(data)
+            if(data.status) 
+            navigate('/questions')
+        }
+        catch(err) {
+            console.log(err)
+        }
+    }
     return ( 
         <>
            <Navbar/>
@@ -47,9 +61,11 @@ const ShowQuestion = () => {
                             Difficulty Level :  {details ? details.difficulty :'' }
                         </h4>
                         <div className="swq__edit">
-                            <button className='icons' onClick={() => setEdit(!edit)}>
+
+                            <Link className='icons' to={`/editQuestion/${id}`}>
                                 <AiOutlineEdit size={"1.8em"} title={"edit"} />
-                            </button>
+                            </Link>
+
                             <a className='icons' href="#open-modal">
                                 <AiFillDelete size={"1.8em"} title={"delete"} color={"#c53333"}/>
                             </a>
@@ -59,12 +75,14 @@ const ShowQuestion = () => {
                                 <a href="#" title="Close" class="modal-close">Close</a>
                                 <h4>Are you sure you want to delete this question?</h4>
                                 <div>
-                                    <button className='btn' >
+
+                                    <button className='btn' onClick={del} >
                                         YES
                                     </button>
-                                    <button className='btn'>
+                                    <a className='btn' href='#'>
                                         CANCEL
-                                    </button>
+                                    </a>
+
                                 </div>
                                 
                             </div>
@@ -85,22 +103,11 @@ const ShowQuestion = () => {
                     </p>
                 </div>
                 <div className="swq__details">
-                        {
-                            edit ? <span >
-                                Press Enter for new submission
-                            </span> : ""
-                        }
-                        {edit? 
-                        <form className="aq__form showquestion">
-                            <textarea cols={200} rows={30} name="" id="" value={details.notes} onChange={(e)=>{
-                                setDetails({...details,notes:e.target.value})
-                            }}/>
-                        </form>
-                        : 
+
                         <p>
                            { details ? details.notes :''} 
-                        </p>}
-                       
+                        </p>
+
                 </div>
 
                 <div className="aq__dtags">
