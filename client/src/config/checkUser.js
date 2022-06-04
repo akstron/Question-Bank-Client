@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { getUser } from "../apiCalls/auth";
+import { getMe } from "../apiCalls/auth";
 import Loader from "../comp/loader";
 import { UserContext } from "../contexts/UserContext";
 
@@ -11,7 +11,7 @@ const CheckUser = ({children}) => {
 
     if(!user){
         console.log('user')
-        getUser().then((res) => {
+        getMe().then((res) => {
             console.log(res)
             if(res.status) {
                 setUser(res.user);
@@ -26,9 +26,6 @@ const CheckUser = ({children}) => {
         if(isLoading) setIsLoading(false);
     }
     
-    /**
-     * TODO: Add a loading page
-     */
     if(isLoading){
         return <Loader/>
     }

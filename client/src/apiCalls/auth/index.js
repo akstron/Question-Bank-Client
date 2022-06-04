@@ -26,12 +26,16 @@ export const logout = async () => {
     return res.json();
 }
 
-export const getUser = async() => {
-    const res = await fetch(`${API}/auth/getUser`, {
-        method:'GET',
-        credentials: 'include',
+
+/**
+ * Get the current logged in user
+ */
+export const getMe = async() => {
+    const res = await fetch(`${API}/auth/me`, {
+        method: 'GET',
+        credentials:'include',
         headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
         }
     });
 

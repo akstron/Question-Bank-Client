@@ -32,10 +32,10 @@ export const getQuestion = async () => {
     return res.json();
 };
 
-export const getStats = async (query) => {
+export const getStats = async (userId, query) => {
 
     const queryString = JSON.stringify(query);
-    const url = `${API}/user/getStats?options=${queryString}`;
+    const url = `${API}/user/getStats?options=${queryString}&userId=${userId}`;
 
     const res = await fetch(url, {
         method: "GET",
