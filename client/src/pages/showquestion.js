@@ -9,6 +9,7 @@ import Modal from '../comp/modal';
 const ShowQuestion = () => {
     const {id} = useParams()
     const [details,setDetails] = useState({tags:[]})
+    const [deleteModalVisibility, setDeleteModalVisibility] = useState(false);
 
     const navigate = useNavigate()
     // const [edit,setEdit]= useState(false)
@@ -30,6 +31,17 @@ const ShowQuestion = () => {
 
         fetchData()
     },[])
+
+    const toggleDeleteModalVisibiltiy = () => {
+        console.log('click');
+        // setDeleteModalVisibility(!deleteModalVisibility);
+        // setDeleteModalVisibility(false);
+        if(deleteModalVisibility){
+            setDeleteModalVisibility(false);
+        } else {
+            setDeleteModalVisibility(true);
+        }
+    }
 
     const tags = details.tags.map(tag=>{
             return <button key={tag.id} type="button" className="btn aq__dtags__btn">{tag.name} </button>
@@ -67,12 +79,18 @@ const ShowQuestion = () => {
                                 <AiOutlineEdit size={"1.8em"} title={"edit"} />
                             </Link>
 
-                            <a className='icons' href="#open-modal">
+                            <button className='icons' onClick={toggleDeleteModalVisibiltiy}>
                                 <AiFillDelete size={"1.8em"} title={"delete"} color={"#c53333"}/>
-                            </a>
+                            </button>
 
-                            <Modal onPositiveClick={del} content={'Are you sure you want to delete this question?'}
-                            positiveText={'Yes'} negativeText={'Cancel'} id={'open-modal'}/>
+                            {deleteModalVisibility && 
+                            <Modal onPositiveClick={del} 
+                            onNegativeClick={toggleDeleteModalVisibiltiy}
+                            onCloseClick={toggleDeleteModalVisibiltiy}
+                            content={'Are you sure you want to delete this question?'}
+                            positiveText={'Yes'} 
+                            negativeText={'Cancel'} 
+                            id={'open-modal'}/>}
                         
                             <button className='icons'>
                                 <a href={details? `${details.url}` :''} target="_blank">

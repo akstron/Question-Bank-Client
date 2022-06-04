@@ -1,25 +1,19 @@
 import '../styles/showquestion.css'
 
-const Modal = ({onPositiveClick, onNegativeClick, content, positiveText, negativeText, id}) => {
+const Modal = ({onPositiveClick, onNegativeClick, content, positiveText, negativeText, id, onCloseClick}) => {
 
     return (
         <div id={id} class="modal-window">
             <div>
-                <a href="#" title="Close" class="modal-close">Close</a>
+                <button onClick={onCloseClick} title="Close" class="modal-close">Close</button>
                 <h4>{content}</h4>
                 <div>
-
-                    <button className='btn' onClick={onPositiveClick} >
+                    <button className='btn' onClick={() => console.log('clicked modal')} >
                         {positiveText}
                     </button>
-                    {onNegativeClick ? 
                     <button className='btn' onClick={onNegativeClick} >
-                        {positiveText}
-                    </button> : 
-                    <a className='btn' href='#'>
                         {negativeText}
-                    </a> }
-
+                    </button>
                 </div>
             </div>
         </div>
