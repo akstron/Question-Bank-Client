@@ -116,6 +116,9 @@
     padding: 1.5rem 2rem;
     background-color: #39424e;
     transition: 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   
   .profCont{
@@ -130,9 +133,9 @@
   }
   
   .txt{
-    vertical-align: top;
+    vertical-align: middle;
     font-size: 1.4rem;
-    
+    padding: 0.8rem 1rem;
   }
   
   .sub{
@@ -144,6 +147,10 @@
     border-style: none none solid none;
     border-color: red;
   } */
+
+  .icon{
+    cursor: pointer;
+  }
 
   
   
