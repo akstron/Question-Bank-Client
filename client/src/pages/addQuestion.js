@@ -16,7 +16,7 @@ const AddQuestion = ({text,states}) => {
         notes: "",
         tag: "",
         tagarray: [],
-        visibility:''
+        visibility:'global'
     });
 
     // error for form
