@@ -85,7 +85,7 @@
     z-index: 999;
     /* visibility: hidden; */
     /* opacity: 0; */
-    pointer-events: none;
+    /* pointer-events: none; */
     transition: all 0.3s;
     padding: 1rem 2rem;
   }
