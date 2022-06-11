@@ -12,13 +12,8 @@ const ShowQuestion = () => {
     const [deleteModalVisibility, setDeleteModalVisibility] = useState(false);
 
     const navigate = useNavigate()
-<<<<<<< HEAD
     // const [edit,setEdit]= useState(false)
     // const [del,setDel] = useState(false)
-=======
-    const [edit,setEdit]= useState(false)
-
->>>>>>> d386ea5e18ab48cdc9a5be931f12da5f54b504d1
     
 
 
