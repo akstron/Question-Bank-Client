@@ -34,7 +34,7 @@ const handleSubmit = async (e) => {
                 <form className="aq__form" onSubmit={handleSubmit}>
 
                     <div className="aq__input">
-                        <label htmlFor="q-url">One Time Password</label>
+                        <label htmlFor="q-url">OTP</label>
                         <input
                             type="text"
                             id="q-otp"
