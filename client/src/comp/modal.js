@@ -8,7 +8,7 @@ const Modal = ({onPositiveClick, onNegativeClick, content, positiveText, negativ
                 <button onClick={onCloseClick} title="Close" class="modal-close">Close</button>
                 <h4>{content}</h4>
                 <div>
-                    <button className='btn' onClick={() => console.log('clicked modal')} >
+                    <button className='btn' onClick={onPositiveClick} >
                         {positiveText}
                     </button>
                     <button className='btn' onClick={onNegativeClick} >

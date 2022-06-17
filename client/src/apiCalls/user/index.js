@@ -58,3 +58,19 @@ export const removeFriend = async (friendId) => {
 
     return res.json();
 }
+
+export const respondFriendRequest = async (senderId, response) => {
+    const res = await fetch(`${API}/user/respondFriendRequest`, {
+        method: 'POST', 
+        credentials: 'include', 
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            senderId,
+            response
+        })
+    });
+
+    return res.json();
+}

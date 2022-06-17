@@ -5,7 +5,7 @@ import '../styles/dash.css'
 import { getStats } from '../apiCalls/question';
 import { UserContext } from '../contexts/UserContext';
 import Loader from '../comp/loader';
-import { getUser, removeFriend, sendFriendRequest, unsendFriendRequest } from '../apiCalls/user';
+import { getUser, removeFriend, respondFriendRequest, sendFriendRequest, unsendFriendRequest } from '../apiCalls/user';
 import Modal from '../comp/modal';
 
 const getFriendButtonText = (friendshipStatus) => {
@@ -28,9 +28,8 @@ const DashBoard = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState(null); 
     const [friendButtonText, setFriendButtonText] = useState('not friend');
-    // const [loggedInUser] = useContext(UserContext);
-    // console.log(user)
-    // console.log('loggedInUser', loggedInUser);
+    const [friendRequestResponseModalVisibility, setFriendRequestResponseModalVisibility] = useState(false);
+    const [removeFriendModalVisibility, setRemoveFriendModalVisibility] = useState(false);
 
     // Gets Stats on first page load
     useEffect(()=>{
@@ -112,10 +111,7 @@ const DashBoard = () => {
                 setUser(newUser);
                 setFriendButtonText(getFriendButtonText(newUser.friendshipStatus));
             } else if(user.friendshipStatus === 'friend request received'){
-                /**
-                 * Handle using a MODAL
-                 * accept or reject
-                 */
+                await setFriendRequestResponseModalVisibility(true);
             } else if(user.friendshipStatus === 'friend request sent'){
                 await unsendFriendRequest(user.id);
                 const newUser = user;
@@ -123,15 +119,7 @@ const DashBoard = () => {
                 setUser(newUser);
                 setFriendButtonText(getFriendButtonText(newUser.friendshipStatus));
             } else {
-                /**
-                 * Handle using a MODAL with question:
-                 * Are you sure, you want to unfriend?
-                 */
-                await removeFriend(user.id);
-                const newUser = user;
-                newUser.friendshipStatus = 'not friend';
-                setUser(newUser);
-                setFriendButtonText(getFriendButtonText(newUser.friendshipStatus));
+                setRemoveFriendModalVisibility(true);
             }
         } catch(e){
             console.log(e);
@@ -153,14 +141,44 @@ const DashBoard = () => {
                                 friendButtonText
                             }
                         </button>
-                        <Modal
+                        {friendRequestResponseModalVisibility&&<Modal
                             id={'modal-friend-reqest-response'}
                             content={'Accept friend request?'}
+                            positiveText={'Accept'}
+                            negativeText={'Decline'}
+                            onCloseClick={() => setFriendRequestResponseModalVisibility(false)}
+                            onPositiveClick={async () => {
+                                await respondFriendRequest(userId, 'accept')
+                                setFriendRequestResponseModalVisibility(false);
+                                user.friendshipStatus = 'friend';
+                                setUser(user);
+                                setFriendButtonText(getFriendButtonText(user.friendshipStatus));
+                            }}
+                            onNegativeClick={async () => {
+                                await respondFriendRequest(userId, 'reject')
+                                setFriendRequestResponseModalVisibility(false);
+                                user.friendshipStatus = 'not friend';
+                                setUser(user);
+                                setFriendButtonText(getFriendButtonText(user.friendshipStatus));
+                            }}
+                        />}
+
+                        {removeFriendModalVisibility && <Modal
+                            id={'modal-remove-friend'}
+                            content={'Unfriend?'}
                             positiveText={'Yes'}
-                            negativeText={'NO'}
-                            // onPositiveClick={}
-                            // onNegativeClick={}
-                        />
+                            negativeText={'No'}
+                            onCloseClick={() => setRemoveFriendModalVisibility(false)}
+                            onPositiveClick={async () => {
+                                await removeFriend(user.id);
+                                user.friendshipStatus = 'not friend';
+                                setUser(user);
+                                setFriendButtonText(getFriendButtonText(user.friendshipStatus));
+                                setRemoveFriendModalVisibility(false);
+                            }}
+                            onNegativeClick={() => setRemoveFriendModalVisibility(false)}
+                        />}
+
                         <div class="dash__fullname">
                             {user.fullName}
                         </div>    
