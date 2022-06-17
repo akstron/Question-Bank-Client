@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { verify } from "../apiCalls/auth";
 import NavBar from "../comp/navbar";
 
 const OTP = () => {
@@ -12,11 +13,15 @@ const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-        setError('')
-        setSuccess('')
-
+        const res = await verify(otp);
+        if(res.status){
+            setSuccess('User verified')
+        } else {
+            setError(res.error);
+        }
 
     } catch (err) {
+        setError(err);
         console.log(err);
     }
 };

@@ -85,8 +85,10 @@ function App() {
         }>
         </Route>
 
-        <Route path="/otp" element={
+        <Route path="/auth/verify" element={
+          <ProtectedRoutes>
           <OTP/>
+          </ProtectedRoutes>
         }>
         </Route>
         

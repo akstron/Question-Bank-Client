@@ -54,3 +54,18 @@ export const register = async (userCredentials) => {
     
      return res.json();
 };
+
+export const verify =  async (otp) => {
+    const res = await fetch(`${API}/auth/verify`,{
+        method:'POST',
+        credentials: 'include',
+        headers: {
+             "Content-Type": "application/json",
+           },
+        body: JSON.stringify({
+            otp
+        })
+     });
+    
+    return res.json();
+}
