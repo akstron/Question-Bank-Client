@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { deleteQuestion, getQuestionById } from '../apiCalls/question';
 import Navbar from '../comp/navbar'
 import '../styles/showquestion.css'

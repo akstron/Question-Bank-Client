@@ -12,6 +12,7 @@ import UserDashboard from "./pages/userDashboard";
 import ShowQuestion from "./pages/showquestion";
 import EditQuestion from "./pages/editQuestion";
 import FindPeople from "./pages/FindPeople";
+import OTP from "./pages/otp";
 
 
 function App() {
@@ -81,6 +82,11 @@ function App() {
 
         <Route path="/showQuestion/:id" element={
           <ShowQuestion/>
+        }>
+        </Route>
+
+        <Route path="/otp" element={
+          <OTP/>
         }>
         </Route>
         

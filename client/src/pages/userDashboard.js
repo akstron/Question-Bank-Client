@@ -1,9 +1,8 @@
-import { useContext, useEffect, useState } from 'react';
+import {  useEffect, useState } from 'react';
 import NavBar from '../comp/navbar';
 import { useParams } from 'react-router-dom';
 import '../styles/dash.css'
 import { getStats } from '../apiCalls/question';
-import { UserContext } from '../contexts/UserContext';
 import Loader from '../comp/loader';
 import { getUser, removeFriend, respondFriendRequest, sendFriendRequest, unsendFriendRequest } from '../apiCalls/user';
 import Modal from '../comp/modal';
